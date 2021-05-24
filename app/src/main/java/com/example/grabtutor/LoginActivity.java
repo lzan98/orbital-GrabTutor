@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private final static int RC_SIGN_IN = 123;
     private FirebaseAuth mAuth;
 
-    //test
+
 //    @Override
 //    protected void onStart() {
 //        super.onStart();
