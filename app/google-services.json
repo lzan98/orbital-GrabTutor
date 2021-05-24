@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "858751277209",
+    "firebase_url": "https://grabtutor-68d73-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "grabtutor-68d73",
+    "storage_bucket": "grabtutor-68d73.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858751277209:android:8892b495545cbe73eb4008",
+        "android_client_info": {
+          "package_name": "com.example.grabtutor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858751277209-hs326m8mic0v24uaupnjq8jjlv339r60.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpnw8WE6M35eZwkhZf3YhaO_ABHbv7sxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858751277209-hs326m8mic0v24uaupnjq8jjlv339r60.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858751277209:android:a3677a0bd72fadc5eb4008",
+        "android_client_info": {
+          "package_name": "com.example.orbitalgrabtutor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858751277209-hs326m8mic0v24uaupnjq8jjlv339r60.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpnw8WE6M35eZwkhZf3YhaO_ABHbv7sxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858751277209-hs326m8mic0v24uaupnjq8jjlv339r60.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
