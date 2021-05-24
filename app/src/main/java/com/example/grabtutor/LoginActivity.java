@@ -36,16 +36,16 @@ public class LoginActivity extends AppCompatActivity {
     private final static int RC_SIGN_IN = 123;
     private FirebaseAuth mAuth;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//        FirebaseUser user = mAuth.getCurrentUser();
+//        if (user != null) {
+//            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//            startActivity(intent);
+//        }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.editText_email);
         password = findViewById(R.id.editText_password);
         loginButton = findViewById(R.id.button_login);
-        signUpButton = findViewById(R.id.button_signup)
+        signUpButton = findViewById(R.id.button_signup);
         googleLoginButton = findViewById(R.id.button_login_google);
         mAuth = FirebaseAuth.getInstance();
 
