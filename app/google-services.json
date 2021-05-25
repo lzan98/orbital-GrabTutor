@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "858751277209-d9kc83rrj8fgro1ldfet64nr8jrjmtpi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.grabtutor",
+            "certificate_hash": "6b036460dc69550df00f2cef0dc2de2ba86a9a7d"
+          }
+        },
+        {
           "client_id": "858751277209-hs326m8mic0v24uaupnjq8jjlv339r60.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -43,6 +51,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "858751277209-9f7qdvh1lec41qa7af2qhqpmtoqc6t94.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.orbitalgrabtutor",
+            "certificate_hash": "6b036460dc69550df00f2cef0dc2de2ba86a9a7d"
+          }
+        },
         {
           "client_id": "858751277209-hs326m8mic0v24uaupnjq8jjlv339r60.apps.googleusercontent.com",
           "client_type": 3
