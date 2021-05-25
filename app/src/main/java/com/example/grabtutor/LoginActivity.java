@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                 //extract / validate
 
                 if (et_username.getText().toString().isEmpty()) {
-                    et_username.setError("Email is Missing");
+                    et_username.setError("Username is Missing");
                     return;
                 }
 
