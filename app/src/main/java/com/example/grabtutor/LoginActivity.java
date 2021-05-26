@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -65,6 +67,21 @@ public class LoginActivity extends AppCompatActivity {
         reset_password = findViewById(R.id.textView_forgot_password);
         mAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference("Users");
+
+        //restrict username to alphanumeric characters only
+        InputFilter filter = new InputFilter() {
+            public CharSequence filter(CharSequence source, int start, int end,
+                                       Spanned dest, int dstart, int dend) {
+                for (int i = start; i < end; i++) {
+                    if (!Character.isLetterOrDigit(source.charAt(i))) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+
+        et_username.setFilters(new InputFilter[]{filter});
 
         reset_password.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -244,6 +261,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onCancelled(@NonNull DatabaseError error) {
             Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+            return;
         }
     };
 

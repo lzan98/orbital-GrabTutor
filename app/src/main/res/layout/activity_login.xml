@@ -149,7 +149,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-        android:drawableLeft="@drawable/custom_email_icon" />
+        android:drawableLeft="@drawable/ic_username" />
 
     <EditText
         android:id="@+id/editText_password"
