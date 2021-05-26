@@ -25,9 +25,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,10 +38,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
     EditText et_username, et_password;
     TextView reset_password;
-    String username, password;
+    String username, password, email;
     Button loginButton, googleLoginButton, signUpButton;
     FirebaseAuth firebaseAuth;
     private GoogleSignInClient mGoogleSignInClient;
@@ -76,16 +80,30 @@ public class LoginActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         // extract email and send reset link
 
-                        String email = resetMail.getText().toString();
-                        mAuth.sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        email = resetMail.getText().toString();
+                        mAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
                             @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(getBaseContext(), "Reset Link Sent", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull @NotNull Exception e) {
-                                Toast.makeText(getBaseContext(), "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            public void onComplete(@NonNull @NotNull Task<SignInMethodQueryResult> task) {
+                                if(task.isSuccessful()){
+                                    SignInMethodQueryResult result = task.getResult();
+                                    List<String> signInMethods = result.getSignInMethods();
+                                    if(signInMethods.contains(EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD)){
+                                        mAuth.sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Toast.makeText(getBaseContext(), "Reset Link Sent", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull @NotNull Exception e) {
+                                                Toast.makeText(getBaseContext(), "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }
+                                    else{
+                                        Toast.makeText(LoginActivity.this, "Account does not exists!", Toast.LENGTH_LONG).show();
+                                    }
+                                }
                             }
                         });
                     }
