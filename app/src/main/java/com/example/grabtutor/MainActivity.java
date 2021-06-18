@@ -3,12 +3,15 @@ package com.example.grabtutor;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.media.MediaBrowserCompat;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -21,6 +24,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.jetbrains.annotations.NotNull;
+import android.os.Bundle;
+import android.view.WindowManager;
+
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,15 +67,40 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
+
+    RecyclerView featuredRecycler;
+    RecyclerView.Adapter adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
+        featuredRecycler = findViewById(R.id.featured_recycler);
+
+        featuredRecycler();
 
         firebaseAuth = FirebaseAuth.getInstance();
         button_logout = findViewById(R.id.button_logout);
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+    }
+
+    private void featuredRecycler() {
+        featuredRecycler.setHasFixedSize(true);
+        featuredRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        ArrayList<FeaturedHelperClass> featuredLocations = new ArrayList<>();
+        featuredLocations.add(new FeaturedHelperClass(R.drawable.ic_add, "Test", "abdedfgh"));
+        featuredLocations.add(new FeaturedHelperClass(R.drawable.ic_add, "Test", "abdedfgh"));
+        featuredLocations.add(new FeaturedHelperClass(R.drawable.ic_add, "Test", "abdedfgh"));
+
+        adapter = new FeaturedAdapter(featuredLocations);
+
+        featuredRecycler.setAdapter(adapter);
+    }
 
 
 //    // Create request for google email (the pop - up)
@@ -94,6 +127,6 @@ public class MainActivity extends AppCompatActivity {
 //                });
 //    }
 
-    }
 }
+
 
