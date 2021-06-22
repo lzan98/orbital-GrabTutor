@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".UserDashboard"
+            tools:context=".Activity.UserDashboard"
             android:orientation="vertical"
             android:background="@color/home_background">
 
@@ -28,7 +28,6 @@
                     android:src = "@drawable/ic_username"
                     android:layout_centerVertical="true"/>
                 <ImageView
-                    android:id="@+id/create"
                     android:layout_width="40dp"
                     android:layout_height="60dp"
                     android:src="@drawable/ic_add"
