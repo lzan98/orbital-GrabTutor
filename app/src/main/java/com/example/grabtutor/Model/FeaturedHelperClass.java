@@ -2,6 +2,8 @@ package com.example.grabtutor.Model;
 
 public class FeaturedHelperClass {
 
+    public FeaturedHelperClass() {}
+
     int image;
     String title, description;
 
