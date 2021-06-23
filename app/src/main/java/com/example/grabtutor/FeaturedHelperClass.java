@@ -2,8 +2,6 @@ package com.example.grabtutor;
 
 public class FeaturedHelperClass {
 
-    public FeaturedHelperClass(){}
-
     int image;
     String title, description;
 

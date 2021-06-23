@@ -15,10 +15,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.grabtutor.Fragment.FavouriteFragment;
-import com.example.grabtutor.Fragment.MessagesFragment;
-import com.example.grabtutor.Fragment.ProfileFragment;
-import com.example.grabtutor.Fragment.SearchFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -79,17 +75,32 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();
+        featuredRecycler = findViewById(R.id.featured_recycler);
+
+        featuredRecycler();
 
         firebaseAuth = FirebaseAuth.getInstance();
-//        button_logout = findViewById(R.id.button_logout);
+        button_logout = findViewById(R.id.button_logout);
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
     }
 
+    private void featuredRecycler() {
+        featuredRecycler.setHasFixedSize(true);
+        featuredRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
+        ArrayList<FeaturedHelperClass> featuredLocations = new ArrayList<>();
+        featuredLocations.add(new FeaturedHelperClass(R.drawable.ic_add, "Test", "abdedfgh"));
+        featuredLocations.add(new FeaturedHelperClass(R.drawable.ic_add, "Test", "abdedfgh"));
+        featuredLocations.add(new FeaturedHelperClass(R.drawable.ic_add, "Test", "abdedfgh"));
+
+        adapter = new FeaturedAdapter(featuredLocations);
+
+        featuredRecycler.setAdapter(adapter);
+    }
 
 
 //    // Create request for google email (the pop - up)
