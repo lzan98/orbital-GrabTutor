@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/purple_200"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.ProfileFragment">
+
+    <TextView
+        android:id="@+id/TextView_edit_user_profile_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit User Profile"
+        android:textColor="@color/white"
+        android:textSize="50dp"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.7"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".80"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <Button
+            android:id="@+id/button_edit_user_profile_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple_200"
+            android:text="back"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.95" />
+
+        <TextView
+            android:id="@+id/textView_edit_user_profile_first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_profile"
+            android:drawablePadding="10dp"
+            android:text="First Name"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.003"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.315" />
+
+        <TextView
+            android:id="@+id/textView_edit_user_profile_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:layout_marginTop="30dp"
+            android:textSize="15dp"
+            android:text="Phone No."
+            android:drawableLeft="@drawable/ic_phone"
+            android:drawablePadding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView_edit_user_profile_last_name"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView_edit_user_profile_last_name"
+            app:layout_constraintTop_toBottomOf="@+id/textView_edit_user_profile_last_name"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView_edit_user_profile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Country"
+            android:layout_marginTop="30dp"
+            android:textSize="15dp"
+            android:drawableLeft="@drawable/ic_flag"
+            android:drawablePadding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView_edit_user_profile_phone_number"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView_edit_user_profile_phone_number"
+            app:layout_constraintTop_toBottomOf="@+id/textView_edit_user_profile_phone_number"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView_edit_user_profile_interest_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Interest"
+            android:textSize="15dp"
+            android:layout_marginTop="30dp"
+            android:drawableLeft="@drawable/ic_star"
+            android:drawablePadding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView_edit_user_profile_email"
+            app:layout_constraintHorizontal_bias="0.043"
+            app:layout_constraintStart_toStartOf="@+id/textView_edit_user_profile_email"
+            app:layout_constraintTop_toBottomOf="@+id/textView_edit_user_profile_email"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView_edit_user_profile_last_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:inputType="text"
+            android:text="Last Name"
+            android:textSize="15dp"
+            android:drawableLeft="@drawable/ic_profile"
+            android:drawablePadding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView_edit_user_profile_first_name"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView_edit_user_profile_first_name"
+            app:layout_constraintTop_toBottomOf="@+id/textView_edit_user_profile_first_name"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView_edit_user_profile_picture"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_image_search"
+
+            />
+
+        <EditText
+            android:id="@+id/editText_edit_user_profile_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="13"
+            android:hint="Enter here"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_edit_user_profile_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.81"
+            app:layout_constraintStart_toEndOf="@+id/textView_edit_user_profile_email"
+            app:layout_constraintTop_toBottomOf="@+id/editText_edit_user_profile_phone"
+            app:layout_constraintVertical_bias="0.333" />
+
+        <EditText
+            android:id="@+id/editText_edit_user_profile_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="13"
+            android:hint="Enter here"
+            android:inputType="phone"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_edit_user_profile_phone_number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.56"
+            app:layout_constraintStart_toEndOf="@+id/textView_edit_user_profile_phone_number"
+            app:layout_constraintTop_toBottomOf="@+id/editText_edit_user_profile_last_name"
+            app:layout_constraintVertical_bias="0.6" />
+
+        <EditText
+            android:id="@+id/editText_edit_user_profile_last_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="13"
+            android:hint="Enter here"
+            android:inputType="textPersonName"
+            android:layout_marginTop="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_edit_user_profile_last_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_edit_user_profile_last_name"
+            app:layout_constraintTop_toBottomOf="@+id/editText_edit_user_profile_first_name" />
+
+        <EditText
+            android:id="@+id/editText_edit_user_profile_first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="13"
+            android:inputType="textPersonName"
+            android:hint="Enter here"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_edit_user_profile_first_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_edit_user_profile_first_name"
+            app:layout_constraintTop_toTopOf="@+id/textView_edit_user_profile_first_name" />
+
+        <EditText
+            android:id="@+id/editText_edit_user_profile_interest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="13"
+            android:hint="Enter here"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_edit_user_profile_interest_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintStart_toEndOf="@+id/textView_edit_user_profile_interest_1"
+            app:layout_constraintTop_toBottomOf="@+id/editText_edit_user_profile_email"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <Button
+            android:id="@+id/button_edit_user_profile_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple_200"
+            android:text="Update"
+            android:textAllCaps="false"
+            app:layout_constraintVertical_bias="0.85"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button_edit_user_profile_upload_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload \n image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.947"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.177" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
