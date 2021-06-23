@@ -1,6 +1,7 @@
 package com.example.grabtutor;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.canhub.cropper.CropImage;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,10 +31,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-import com.theartofdev.edmodo.cropper.CropImage;
 
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static androidx.core.content.ContentProviderCompat.requireContext;
 
 public class PostActivity extends AppCompatActivity {
 
@@ -43,17 +50,20 @@ public class PostActivity extends AppCompatActivity {
     private ImageView imageAdded;
     private TextView post;
     private EditText description;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
-        //storageRef = FirebaseStorage.getInstance().getReference().child("Uploads");
         close = findViewById(R.id.close);
         imageAdded = findViewById(R.id.image_added);
         post = findViewById(R.id.post);
         description = findViewById(R.id.description);
+
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,11 +73,7 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-        CropImage.activity().start(PostActivity.this);
-    }
 
-
-/*
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +81,7 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
+         CropImage.activity().start(PostActivity.this);
     }
 
     private void upload() {
@@ -113,19 +120,6 @@ public class PostActivity extends AppCompatActivity {
 
                     ref.child(postId).setValue(map);
 
-                    DatabaseReference mHashTagRef = FirebaseDatabase.getInstance().getReference().child("HashTags");
-                    List<String> hashTags = description.getHashtags();
-                    if (!hashTags.isEmpty()){
-                        for (String tag : hashTags){
-                            map.clear();
-
-                            map.put("tag" , tag.toLowerCase());
-                            map.put("postid" , postId);
-
-                            mHashTagRef.child(tag.toLowerCase()).child(postId).setValue(map);
-                        }
-                    }
-
                     pd.dismiss();
                     startActivity(new Intent(PostActivity.this , MainActivity.class));
                     finish();
@@ -154,8 +148,7 @@ public class PostActivity extends AppCompatActivity {
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            imageUri = result.getUri();
-
+            imageUri = result.getUriContent();
             imageAdded.setImageURI(imageUri);
         } else {
             Toast.makeText(this, "Try again!", Toast.LENGTH_SHORT).show();
@@ -164,27 +157,9 @@ public class PostActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
-
-        final ArrayAdapter<Hashtag> hashtagAdapter = new HashtagArrayAdapter<>(getApplicationContext());
-
-        FirebaseDatabase.getInstance().getReference().child("HashTags").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    hashtagAdapter.add(new Hashtag(snapshot.getKey() , (int) snapshot.getChildrenCount()));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        description.setHashtagAdapter(hashtagAdapter);
     }
-    */
 }
