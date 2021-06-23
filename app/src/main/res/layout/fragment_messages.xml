@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MessagesFragment">
+    tools:context=".Fragment.MessagesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/messagefragment_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_200">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Messages"
+            android:textColor="@android:color/white"
+            android:textSize="30dp"
+            android:fontFamily="sans-serif-condensed"/>
+
+        <Button
+            android:id="@+id/messagefragment_searchusers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search Users"
+            android:textAllCaps="false"
+            android:drawableLeft="@drawable/ic_search"
+            android:layout_marginLeft="80dp"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messagefragment_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_below="@+id/messagefragment_toolbar"/>
 
-</FrameLayout>
+</RelativeLayout>
