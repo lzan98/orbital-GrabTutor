@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.grabtutor.Adapter.FeaturedAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -40,12 +41,12 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home2, container, false);
 
         featuredRecycler = view.findViewById(R.id.featured_recycler);
-        newPost = view.findViewById(R.id.new_post);
+//        newPost = view.findViewById(R.id.new_post);
         ArrayList<FeaturedHelperClass> featuredLocations = new ArrayList<>();
 
         featuredRecycler.setHasFixedSize(true);
         featuredRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        adapter = new FeaturedAdapter(featuredLocations);
+//        adapter = new FeaturedAdapter(featuredLocations);
         featuredRecycler.setAdapter(adapter);
 
         FirebaseDatabase.getInstance().getReference().child("Posts").addValueEventListener(new ValueEventListener() {

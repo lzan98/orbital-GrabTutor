@@ -15,6 +15,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.grabtutor.Fragment.FavouriteFragment;
+import com.example.grabtutor.Fragment.MessagesFragment;
+import com.example.grabtutor.Fragment.ProfileFragment;
+import com.example.grabtutor.Fragment.SearchFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -80,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();
 
         firebaseAuth = FirebaseAuth.getInstance();
-        button_logout = findViewById(R.id.button_logout);
+//        button_logout = findViewById(R.id.button_logout);
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
     }

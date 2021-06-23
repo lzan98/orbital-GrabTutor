@@ -17,7 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.canhub.cropper.CropImage;
+//import com.canhub.cropper.CropImage;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -81,7 +81,7 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-         CropImage.activity().start(PostActivity.this);
+         //CropImage.activity().start(PostActivity.this);
     }
 
     private void upload() {
@@ -146,15 +146,15 @@ public class PostActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            imageUri = result.getUriContent();
-            imageAdded.setImageURI(imageUri);
-        } else {
-            Toast.makeText(this, "Try again!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(PostActivity.this , MainActivity.class));
-            finish();
-        }
+//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
+//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//            imageUri = result.getUriContent();
+//            imageAdded.setImageURI(imageUri);
+//        } else {
+//            Toast.makeText(this, "Try again!", Toast.LENGTH_SHORT).show();
+//            startActivity(new Intent(PostActivity.this , MainActivity.class));
+//            finish();
+//        }
     }
 
 
