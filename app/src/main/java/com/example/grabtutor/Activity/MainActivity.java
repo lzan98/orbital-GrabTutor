@@ -99,11 +99,11 @@ public class MainActivity extends AppCompatActivity {
         status("online");
     }
 //
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        status("offline");
-//    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        status("offline");
+    }
 
 
 //    // Create request for google email (the pop - up)

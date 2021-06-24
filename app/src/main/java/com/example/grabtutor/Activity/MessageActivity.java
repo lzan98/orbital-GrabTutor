@@ -3,9 +3,11 @@ package com.example.grabtutor.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import com.example.grabtutor.Adapter.MessageAdapter;
 import com.example.grabtutor.Adapter.UserAdapter;
 import com.example.grabtutor.Fragment.ChatSearchUsersFragment;
+import com.example.grabtutor.Fragment.MessagesFragment;
 import com.example.grabtutor.Model.Chat;
 import com.example.grabtutor.Model.User;
 import com.example.grabtutor.R;
@@ -87,7 +90,6 @@ public class MessageActivity extends AppCompatActivity {
         btn_send = findViewById(R.id.messaging_btn_send);
         text_send = findViewById(R.id.messaging_text_send);
         Picasso.get().load("https://static.wikia.nocookie.net/p__/images/d/d8/Veemon_DA_The_Movie.png/revision/latest?cb=20190727134832&path-prefix=protagonist").into(profile_image);
-
 
         intent = getIntent();
         String userid = intent.getStringExtra("userid");

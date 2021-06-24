@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.example.grabtutor.Adapter.UserAdapter;
 import com.example.grabtutor.R;
@@ -50,6 +52,7 @@ public class ChatSearchUsersFragment extends Fragment {
     private UserAdapter userAdapter;
     private List<User> mUsers;
     private EditText search_users;
+    private ImageButton back;
 
     public ChatSearchUsersFragment() {
         // Required empty public constructor
@@ -91,6 +94,18 @@ public class ChatSearchUsersFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_chat_user_search);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        back = view.findViewById(R.id.chat_search_back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment newFragment = new MessagesFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
         mUsers = new ArrayList<>();
 
@@ -117,6 +132,8 @@ public class ChatSearchUsersFragment extends Fragment {
 
         return view;
     }
+
+
 
     private void searchUsers(String s) {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();

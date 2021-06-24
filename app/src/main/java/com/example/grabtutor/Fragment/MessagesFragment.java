@@ -96,7 +96,6 @@ public class MessagesFragment extends Fragment {
     }
 
 
-
     private void chatList() {
         mUsers = new ArrayList<>();
         reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -105,7 +104,7 @@ public class MessagesFragment extends Fragment {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 mUsers.clear();
 
-                for (DataSnapshot ds: snapshot.getChildren()) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
                     User user = ds.getValue(User.class);
                     for (Chatlist chatlist : usersList) {
                         if (user.getId().equals(chatlist.getId())) {

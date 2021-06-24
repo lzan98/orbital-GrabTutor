@@ -178,7 +178,7 @@ public class EditUserProfileActivity extends AppCompatActivity {
     private void uploadToFirebase(Uri uri) {
         //StorageReference fileRef = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(uri));
         //name of the image in the storage
-        StorageReference fileRef = storageReference.child(mAuth.getCurrentUser().getEmail() + "." + getFileExtension(uri));
+        StorageReference fileRef = storageReference.child("Profile Image").child(mAuth.getCurrentUser().getEmail() + "." + getFileExtension(uri));
         fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

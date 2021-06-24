@@ -9,8 +9,31 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
       android:layout_margin="5dp"
+       android:layout_below="@id/search_users_toolbar"
       android:hint="Search"
       android:id="@+id/search_users"/>
+
+   <androidx.appcompat.widget.Toolbar
+      android:id="@+id/search_users_toolbar"
+       android:layout_width="match_parent"
+       android:layout_height="40dp"
+      android:background="@color/purple_200">
+
+      <ImageButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/chat_search_back"
+         android:src="@drawable/ic_back"
+         android:background="@color/purple_200"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+         android:text="Search users to chat"
+         android:textColor="@color/white"
+         android:textSize="20dp"
+         android:layout_marginLeft="50dp"/>
+   </androidx.appcompat.widget.Toolbar>
    
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/recycler_view_chat_user_search"

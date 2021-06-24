@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.grabtutor.Model.User;
 import com.example.grabtutor.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -205,6 +206,8 @@ public class LoginActivity extends AppCompatActivity {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
 
                 firebaseAuthWithGoogle(account.getIdToken());
+
+
             } catch (ApiException e) {
                 Toast.makeText(LoginActivity.this, "Authentication fail", Toast.LENGTH_SHORT).show();
 
@@ -223,6 +226,9 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
+                            FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                            User user = new User(firebaseUser.getEmail(), firebaseUser.getDisplayName(), "NA", firebaseUser.getUid(), "offline", "default");
+                            ref.child(firebaseUser.getUid()).setValue(user);
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -232,36 +238,36 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void login() {
-        username = et_username.getText().toString();
-        password = et_password.getText().toString();
+//    private void login() {
+//        username = et_username.getText().toString();
+//        password = et_password.getText().toString();
+//
+//        ref.child(username).addListenerForSingleValueEvent(listener);
+//    }
 
-        ref.child(username).addListenerForSingleValueEvent(listener);
-    }
-
-    ValueEventListener listener = new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            if (snapshot.exists()) {
-                String pass = snapshot.child("password").getValue(String.class);
-                if (pass.equals(password)) {
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                } else {
-                    Toast.makeText(LoginActivity.this, "Invalid password!", Toast.LENGTH_LONG).show();
-                }
-
-            } else {
-                Toast.makeText(LoginActivity.this, "Invalid account!", Toast.LENGTH_LONG).show();
-            }
-
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-            Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_LONG).show();
-            return;
-        }
-    };
+//    ValueEventListener listener = new ValueEventListener() {
+//        @Override
+//        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//            if (snapshot.exists()) {
+//                String pass = snapshot.child("password").getValue(String.class);
+//                if (pass.equals(password)) {
+//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                } else {
+//                    Toast.makeText(LoginActivity.this, "Invalid password!", Toast.LENGTH_LONG).show();
+//                }
+//
+//            } else {
+//                Toast.makeText(LoginActivity.this, "Invalid account!", Toast.LENGTH_LONG).show();
+//            }
+//
+//        }
+//
+//        @Override
+//        public void onCancelled(@NonNull DatabaseError error) {
+//            Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+//            return;
+//        }
+//    };
 
     private void LOGIN() {
         progressBar.setVisibility(View.VISIBLE);

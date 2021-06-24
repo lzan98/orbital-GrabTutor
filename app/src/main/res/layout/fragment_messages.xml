@@ -8,29 +8,33 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/messagefragment_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:background="@color/purple_200">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Messages"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Recent \nMessages"
             android:textColor="@android:color/white"
-            android:textSize="30dp"
-            android:fontFamily="sans-serif-condensed"/>
+            android:textSize="30dp" >
+        </TextView>
+
 
         <Button
             android:id="@+id/messagefragment_searchusers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search Users"
-            android:textAllCaps="false"
+            android:layout_marginLeft="80dp"
             android:drawableLeft="@drawable/ic_search"
-            android:layout_marginLeft="80dp"/>
+            android:text="Search Users"
+            android:textAllCaps="false" />
+
 
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
+
         android:id="@+id/messagefragment_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
