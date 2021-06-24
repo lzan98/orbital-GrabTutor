@@ -113,7 +113,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(email, username, password, mAuth.getCurrentUser().getUid(), "offline");
+                            User user = new User(email, username, password, mAuth.getCurrentUser().getUid(), "offline", "default");
                             ref.child(mAuth.getCurrentUser().getUid()).setValue(user);
 
                             mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {

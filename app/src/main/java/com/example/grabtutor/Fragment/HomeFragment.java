@@ -4,22 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.grabtutor.Adapter.PostAdapter;
+import com.example.grabtutor.Model.Post;
 import com.example.grabtutor.Activity.PostActivity;
-import com.example.grabtutor.Adapter.FeaturedAdapter;
-import com.example.grabtutor.Model.FeaturedHelperClass;
 import com.example.grabtutor.R;
-import android.provider.ContactsContract;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,13 +26,14 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView featuredRecycler;
-    RecyclerView.Adapter adapter;
+    private RecyclerView recyclerViewPosts;
+    private PostAdapter postAdapter;
     ImageView newPost;
-
+    private List<Post> postList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,31 +41,18 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home2, container, false);
 
-        featuredRecycler = view.findViewById(R.id.featured_recycler);
+        recyclerViewPosts = view.findViewById(R.id.featured_recycler);
+        recyclerViewPosts.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setReverseLayout(true);
+        recyclerViewPosts.setLayoutManager(linearLayoutManager);
+        postList = new ArrayList<>();
+        postAdapter = new PostAdapter(getContext(), postList);
         newPost = view.findViewById(R.id.new_post);
-        ArrayList<FeaturedHelperClass> featuredLocations = new ArrayList<>();
+        recyclerViewPosts.setAdapter(postAdapter);
 
-        featuredRecycler.setHasFixedSize(true);
-        featuredRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        adapter = new FeaturedAdapter(featuredLocations);
-        featuredRecycler.setAdapter(adapter);
-
-        FirebaseDatabase.getInstance().getReference().child("Posts").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
-                featuredLocations.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    FeaturedHelperClass post = snapshot.getValue(FeaturedHelperClass.class);
-                    featuredLocations.add(post);
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });
+        readPosts();
 
         newPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,5 +62,26 @@ public class HomeFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void readPosts() {
+
+        FirebaseDatabase.getInstance().getReference().child("Posts").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                postList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Post post = snapshot.getValue(Post.class);
+                    postList.add(post);
+                }
+                postAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }

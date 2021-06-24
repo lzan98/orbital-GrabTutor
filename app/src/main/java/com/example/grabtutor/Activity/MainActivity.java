@@ -3,18 +3,13 @@ package com.example.grabtutor.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.WindowManager;
 import android.widget.Button;
 
-import com.example.grabtutor.Adapter.FeaturedAdapter;
-import com.example.grabtutor.Fragment.ChatSearchUsersFragment;
 import com.example.grabtutor.Fragment.ProfileFragment;
-import com.example.grabtutor.Model.FeaturedHelperClass;
 import com.example.grabtutor.Fragment.FavouriteFragment;
 import com.example.grabtutor.Fragment.HomeFragment;
 import com.example.grabtutor.Fragment.MessagesFragment;
@@ -29,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 

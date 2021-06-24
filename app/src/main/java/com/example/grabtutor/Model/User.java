@@ -1,13 +1,14 @@
 package com.example.grabtutor.Model;
 
 public class User {
-    public String status, email, username, password, profile_picture, id, search;
+    public String status, email, username, password, profile_picture, id, search, imageurl;
     public Integer balance;
 
     public User() {}
 
-    public User(String email, String username, String password, String id, String status){
+    public User(String email, String username, String password, String id, String status, String imageurl){
         this.email = email;
+        this.imageurl = imageurl;
         this.username = username;
         this.password= password;
         this.balance = 0;
@@ -39,6 +40,10 @@ public class User {
 
     public String getId() {
         return id;
+    }
+
+    public String getImageurl() {
+        return imageurl;
     }
 
     public String getStatus() {
