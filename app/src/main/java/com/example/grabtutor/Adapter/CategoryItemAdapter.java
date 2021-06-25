@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.grabtutor.Fragment.CategoryFragment;
-import com.example.grabtutor.Fragment.CategoryItemFragment;
 import com.example.grabtutor.R;
 
 public class CategoryItemAdapter extends BaseAdapter {
@@ -23,7 +22,7 @@ public class CategoryItemAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return CategoryItemFragment.Images.length;
+        return 0;
     }
 
     @Override
@@ -42,9 +41,7 @@ public class CategoryItemAdapter extends BaseAdapter {
         ImageView imageView = convertView.findViewById(R.id.imageView);
         imageView.setImageResource(CategoryFragment.categoryImages[position]);
         TextView title = convertView.findViewById(R.id.title);
-        title.setText(CategoryItemFragment.names[position]);
 
-        Glide.with(context).load(CategoryItemFragment.Images[position]).into(imageView);
 
         return convertView;
     }

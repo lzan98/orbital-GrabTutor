@@ -5,13 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.CategoryFragment">
 
-    <Toolbar
-        android:id="@+id/toolbar"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/design_default_color_primary"
-        android:title="All categories"
-        android:titleTextColor="#FFFFFF"></Toolbar>
+        android:layout_height="match_parent"
+        android:text="Categories"
+        android:textSize="40dp"
+        android:layout_marginLeft="10dp"/>
     <RelativeLayout
         android:layout_marginTop="60dp"
         android:layout_width="match_parent"

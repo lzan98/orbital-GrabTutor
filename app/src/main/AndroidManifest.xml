@@ -9,13 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GrabTutor">
+        <activity android:name=".Activity.PostProgrammingActivity"></activity>
+        <activity android:name=".Activity.PostMusicActivity" />
+        <activity android:name=".Activity.PostFitnessActivity" />
         <activity android:name=".Activity.SignUpActivity" />
         <activity android:name=".Activity.Payment" />
         <activity android:name=".Activity.UserProfileActivity" />
         <activity android:name=".Activity.MessageActivity" />
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.TopUp" />
-        <activity android:name=".Activity.PostActivity"/>
+        <activity android:name=".Activity.PostActivity" />
         <activity android:name=".Activity.EditUserProfileActivity" />
         <activity android:name=".Activity.SplashActivity">
             <intent-filter>

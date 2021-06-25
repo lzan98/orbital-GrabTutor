@@ -37,9 +37,25 @@ public class CategoryFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CategoryItemFragment categoryItemFragment = new CategoryItemFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CategoryItemFragment()).commit();
-            }
+                if (position == 0) {
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FitnessFragment()).commit();
+                }
+                else if (position == 1) {
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MusicFragment()).commit();
+                }
+                else if (position == 2) {
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProgrammingFragment()).commit();
+                }
+                else if (position == 3) {
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WritingFragment()).commit();
+                }
+                else if (position == 4) {
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DesignFragment()).commit();
+                }
+                else {
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DataBaseFragment()).commit();
+                }
+                }
         });
         return view;
     }
