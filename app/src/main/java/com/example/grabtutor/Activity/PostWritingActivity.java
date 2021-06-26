@@ -10,6 +10,7 @@ import com.example.grabtutor.Fragment.DesignFragment;
 import com.example.grabtutor.Fragment.HomeFragment;
 import com.example.grabtutor.Fragment.MusicFragment;
 import com.example.grabtutor.Fragment.ProgrammingFragment;
+import com.example.grabtutor.Fragment.WritingFragment;
 import com.example.grabtutor.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,7 +36,7 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
-public class PostMusicActivity extends AppCompatActivity {
+public class PostWritingActivity extends AppCompatActivity {
 
     private Uri imageUri;
     private String imageUrl;
@@ -64,7 +65,7 @@ public class PostMusicActivity extends AppCompatActivity {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MusicFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WritingFragment()).commit();
                 finish();
             }
         });
@@ -77,7 +78,7 @@ public class PostMusicActivity extends AppCompatActivity {
             }
         });
 
-        CropImage.activity().start(PostMusicActivity.this);
+        CropImage.activity().start(PostWritingActivity.this);
     }
 
     private void upload() {
@@ -87,7 +88,7 @@ public class PostMusicActivity extends AppCompatActivity {
         pd.show();
 
         if (imageUri != null){
-            final StorageReference filePath = FirebaseStorage.getInstance().getReference("Music").child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
+            final StorageReference filePath = FirebaseStorage.getInstance().getReference("Writing").child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
 
             StorageTask uploadtask = filePath.putFile(imageUri);
             uploadtask.continueWithTask(new Continuation() {
@@ -105,7 +106,7 @@ public class PostMusicActivity extends AppCompatActivity {
                     Uri downloadUri = task.getResult();
                     imageUrl = downloadUri.toString();
 
-                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Music");
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Writing");
                     String postId = ref.push().getKey();
 
                     HashMap<String , Object> map = new HashMap<>();
@@ -123,7 +124,7 @@ public class PostMusicActivity extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(PostMusicActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PostWritingActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
@@ -148,7 +149,7 @@ public class PostMusicActivity extends AppCompatActivity {
             imageAdded.setImageURI(imageUri);
         } else {
             Toast.makeText(this, "Try again!", Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MusicFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WritingFragment()).commit();
             finish();
         }
     }

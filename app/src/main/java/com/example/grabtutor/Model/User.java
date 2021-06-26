@@ -8,8 +8,8 @@ public class User {
 
     public User(String email, String username, String password, String id, String status, String imageurl){
         this.email = email;
-        this.imageurl = imageurl;
         this.username = username;
+        this.imageurl = imageurl;
         this.password= password;
         this.balance = 0;
         this.profile_picture = "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg";

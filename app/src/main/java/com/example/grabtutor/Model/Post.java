@@ -3,6 +3,7 @@ package com.example.grabtutor.Model;
 public class Post {
 
     private String description;
+    private String title;
     private String imageurl;
     private String postid;
     private String publisher;
@@ -10,15 +11,20 @@ public class Post {
     public Post() {
     }
 
-    public Post(String description, String imageurl, String postid, String publisher) {
+    public Post(String title, String description, String imageurl, String postid, String publisher) {
         this.description = description;
         this.imageurl = imageurl;
         this.postid = postid;
+        this.title = title;
         this.publisher = publisher;
     }
 
     public String getDescription() {
         return description;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public void setDescription(String description) {

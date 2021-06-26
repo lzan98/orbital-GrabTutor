@@ -50,6 +50,7 @@ public class PostActivity extends AppCompatActivity {
     private ImageView imageAdded;
     private TextView post;
     private EditText description;
+    private EditText title;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -63,6 +64,7 @@ public class PostActivity extends AppCompatActivity {
         imageAdded = findViewById(R.id.image_added);
         post = findViewById(R.id.post);
         description = findViewById(R.id.description);
+        title = findViewById(R.id.title);
 
 
         close.setOnClickListener(new View.OnClickListener() {

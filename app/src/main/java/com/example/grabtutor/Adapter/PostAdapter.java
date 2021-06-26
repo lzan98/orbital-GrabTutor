@@ -54,19 +54,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         final Post post = mPosts.get(position);
         Picasso.get().load(post.getImageurl()).into(holder.postImage);
         holder.description.setText(post.getDescription());
+        holder.title.setText(post.getTitle());
 
-        FirebaseDatabase.getInstance().getReference().child("Users").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Users").child(post.getPublisher()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-
-               //if (user.getImageurl().equals("default")) {
-                 //   holder.imageProfile.setImageResource(R.mipmap.ic_launcher);
-               //} else {
-                    Picasso.get().load(user.getImageurl()).placeholder(R.mipmap.ic_launcher).into(holder.imageProfile);
-               //}
-                holder.username.setText(user.getUsername());
-                holder.author.setText(user.getUsername());
+                Picasso.get().load(user.getProfile_picture()).placeholder(R.mipmap.ic_launcher).into(holder.imageProfile);
+                holder.username.setText(user.getUsername());//user.getUsername());
             }
 
             @Override
@@ -87,17 +82,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         });
 
         holder.username.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE)
-                        .edit().putString("profileId", post.getPublisher()).apply();
-
-                ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new ProfileFragment()).commit();
-            }
-        });
-
-        holder.author.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE)
@@ -139,7 +123,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         public TextView noOfLikes;
         public TextView author;
         public TextView noOfComments;
-        EditText description;
+        TextView title;
+        TextView description;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
@@ -147,7 +132,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             imageProfile = itemView.findViewById(R.id.image_profile);
             postImage = itemView.findViewById(R.id.post_image);
             username = itemView.findViewById(R.id.username);
-            author = itemView.findViewById(R.id.author);
+            title = itemView.findViewById(R.id.title);
             noOfComments = itemView.findViewById(R.id.no_of_comments);
             description = itemView.findViewById(R.id.description);
 

@@ -5,6 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.canhub.cropper.CropImage;
+import com.example.grabtutor.Fragment.CategoryFragment;
+import com.example.grabtutor.Fragment.DesignFragment;
+import com.example.grabtutor.Fragment.FitnessFragment;
 import com.example.grabtutor.Fragment.HomeFragment;
 import com.example.grabtutor.R;
 import com.google.android.gms.tasks.Continuation;
@@ -40,6 +43,7 @@ public class PostFitnessActivity extends AppCompatActivity {
     private ImageView imageAdded;
     private TextView post;
     private EditText description;
+    private EditText title;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -47,18 +51,19 @@ public class PostFitnessActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_fitness);
+        setContentView(R.layout.activity_post);
 
         close = findViewById(R.id.close);
         imageAdded = findViewById(R.id.image_added);
         post = findViewById(R.id.post);
         description = findViewById(R.id.description);
+        title = findViewById(R.id.title);
 
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PostFitnessActivity.this, HomeFragment.class));
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FitnessFragment()).commit();
                 finish();
             }
         });
@@ -106,13 +111,13 @@ public class PostFitnessActivity extends AppCompatActivity {
                     map.put("postid" , postId);
                     map.put("imageurl" , imageUrl);
                     map.put("description" , description.getText().toString());
+                    map.put("title" , title.getText().toString());
                     map.put("publisher" , FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                     ref.child(postId).setValue(map);
 
                     pd.dismiss();
-                    startActivity(new Intent(PostFitnessActivity.this , HomeFragment.class));
-                    finish();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FitnessFragment()).commit();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -142,7 +147,7 @@ public class PostFitnessActivity extends AppCompatActivity {
             imageAdded.setImageURI(imageUri);
         } else {
             Toast.makeText(this, "Try again!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(PostFitnessActivity.this , HomeFragment.class));
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FitnessFragment()).commit();
             finish();
         }
     }

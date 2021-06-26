@@ -10,12 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
+import com.example.grabtutor.Activity.MainActivity;
 import com.example.grabtutor.Adapter.CategoryAdapter;
 import com.example.grabtutor.R;
-import com.example.grabtutor.*;
-
 
 
 public class CategoryFragment extends Fragment {
