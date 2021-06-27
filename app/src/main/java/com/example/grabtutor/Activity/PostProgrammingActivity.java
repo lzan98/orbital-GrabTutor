@@ -64,7 +64,7 @@ public class PostProgrammingActivity extends AppCompatActivity {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PostProgrammingActivity.this, ProgrammingFragment.class));
+                //startActivity(new Intent(PostProgrammingActivity.this, ProgrammingFragment.class));
                 //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProgrammingFragment()).commit();
                 finish();
             }
@@ -119,8 +119,9 @@ public class PostProgrammingActivity extends AppCompatActivity {
                     ref.child(postId).setValue(map);
 
                     pd.dismiss();
+                    finish();
                     //getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new ProgrammingFragment()).commit();
-                    startActivity(new Intent(PostProgrammingActivity.this, MainActivity.class));
+                    //startActivity(new Intent(PostProgrammingActivity.this, MainActivity.class));
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
