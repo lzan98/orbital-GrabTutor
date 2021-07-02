@@ -64,8 +64,6 @@ public class PostProgrammingActivity extends AppCompatActivity {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(PostProgrammingActivity.this, ProgrammingFragment.class));
-                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProgrammingFragment()).commit();
                 finish();
             }
         });

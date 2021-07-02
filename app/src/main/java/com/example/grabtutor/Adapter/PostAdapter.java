@@ -70,7 +70,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         });
 
 
-        holder.imageProfile.setOnClickListener(new View.OnClickListener() {
+        /*holder.imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE)
@@ -91,6 +91,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                         .replace(R.id.fragment_container, new ProfileFragment()).commit();
             }
         });
+         */
 
         /*holder.postImage.setOnClickListener(new View.OnClickListener() {
             @Override
