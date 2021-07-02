@@ -116,7 +116,7 @@ public class PostFitnessActivity extends AppCompatActivity {
                     ref.child(postId).setValue(map);
 
                     pd.dismiss();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FitnessFragment()).commit();
+                    finish();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

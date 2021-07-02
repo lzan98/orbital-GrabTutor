@@ -118,7 +118,7 @@ public class PostDatabaseActivity extends AppCompatActivity {
                     ref.child(postId).setValue(map);
 
                     pd.dismiss();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DataBaseFragment()).commit();
+                    finish();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

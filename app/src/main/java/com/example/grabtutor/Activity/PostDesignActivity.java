@@ -117,7 +117,7 @@ public class PostDesignActivity extends AppCompatActivity {
                     ref.child(postId).setValue(map);
 
                     pd.dismiss();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DesignFragment()).commit();
+                    finish();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

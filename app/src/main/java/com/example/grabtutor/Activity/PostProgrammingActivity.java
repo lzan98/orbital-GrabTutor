@@ -118,8 +118,6 @@ public class PostProgrammingActivity extends AppCompatActivity {
 
                     pd.dismiss();
                     finish();
-                    //getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new ProgrammingFragment()).commit();
-                    //startActivity(new Intent(PostProgrammingActivity.this, MainActivity.class));
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

@@ -118,7 +118,7 @@ public class PostWritingActivity extends AppCompatActivity {
                     ref.child(postId).setValue(map);
 
                     pd.dismiss();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MusicFragment()).commit();
+                    finish();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
