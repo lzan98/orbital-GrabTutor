@@ -68,13 +68,15 @@ public class DataBaseFragment extends Fragment {
 
     private void readPosts() {
 
-        FirebaseDatabase.getInstance().getReference().child("Database").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 postList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Post post = snapshot.getValue(Post.class);
-                    postList.add(post);
+                    if (post.getCategoryName().equals("Database")) {
+                        postList.add(post);
+                    }
                 }
                 postAdapter.notifyDataSetChanged();
             }

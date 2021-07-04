@@ -87,7 +87,7 @@ public class PostDatabaseActivity extends AppCompatActivity {
         pd.show();
 
         if (imageUri != null){
-            final StorageReference filePath = FirebaseStorage.getInstance().getReference("Database").child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
+            final StorageReference filePath = FirebaseStorage.getInstance().getReference("Posts").child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
 
             StorageTask uploadtask = filePath.putFile(imageUri);
             uploadtask.continueWithTask(new Continuation() {
@@ -105,7 +105,7 @@ public class PostDatabaseActivity extends AppCompatActivity {
                     Uri downloadUri = task.getResult();
                     imageUrl = downloadUri.toString();
 
-                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Database");
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
                     String postId = ref.push().getKey();
 
                     HashMap<String , Object> map = new HashMap<>();
@@ -113,6 +113,7 @@ public class PostDatabaseActivity extends AppCompatActivity {
                     map.put("imageurl" , imageUrl);
                     map.put("description" , description.getText().toString());
                     map.put("title" , title.getText().toString());
+                    map.put("categoryName", "Database");
                     map.put("publisher" , FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                     ref.child(postId).setValue(map);

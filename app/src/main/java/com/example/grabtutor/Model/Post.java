@@ -7,16 +7,18 @@ public class Post {
     private String imageurl;
     private String postid;
     private String publisher;
+    private String categoryName;
 
     public Post() {
     }
 
-    public Post(String title, String description, String imageurl, String postid, String publisher) {
+    public Post(String title, String description, String imageurl, String categoryName, String postid, String publisher) {
         this.description = description;
         this.imageurl = imageurl;
         this.postid = postid;
         this.title = title;
         this.publisher = publisher;
+        this.categoryName = categoryName;
     }
 
     public String getDescription() {
@@ -33,6 +35,10 @@ public class Post {
 
     public String getImageurl() {
         return imageurl;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
     }
 
     public void setImageurl(String imageurl) {

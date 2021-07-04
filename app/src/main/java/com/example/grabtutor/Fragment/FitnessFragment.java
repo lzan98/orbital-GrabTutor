@@ -67,13 +67,15 @@ public class FitnessFragment extends Fragment {
 
     private void readPosts() {
 
-        FirebaseDatabase.getInstance().getReference().child("Fitness").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 postList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Post post = snapshot.getValue(Post.class);
-                    postList.add(post);
+                    if (post.getCategoryName().equals("Fitness")) {
+                        postList.add(post);
+                    }
                 }
                 postAdapter.notifyDataSetChanged();
             }
