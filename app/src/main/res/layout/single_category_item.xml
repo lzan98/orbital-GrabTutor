@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
-    <androidx.cardview.widget.CardView
-        android:layout_width="220dp"
-        android:layout_height="220dp">
-        <ImageView
-            android:id="@+id/imageView"
-            android:scaleType="fitXY"
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"/>
+    android:layout_width="350dp"
+    android:layout_height="150dp"
+    android:layout_gravity="center"
+    android:backgroundTintMode="src_over">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/programming_background"/>
         <TextView
             android:id="@+id/title"
-            android:textSize="22dp"
-            android:gravity="center"
-            android:layout_gravity="bottom|center"
-            android:text="Categoryname"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content"
+            android:text="categoryName"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/brandon_grotesque_black"
+            android:padding="25dp"/>
 
 </RelativeLayout>

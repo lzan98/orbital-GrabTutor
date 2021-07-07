@@ -16,20 +16,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="60dp"
-                android:src = "@drawable/ic_username"
-                android:layout_centerVertical="true"/>
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="60dp"
-                android:src="@drawable/ic_add"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:padding="5dp"
-                android:background="@color/banner_background"
-                android:id="@+id/new_post"/>
+            //might put app name/logo here
         </RelativeLayout>
 
         <ScrollView
@@ -92,7 +79,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/featured_recycler"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="200dp"
                         android:layout_below="@id/featured"/>
 
 
@@ -113,7 +100,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Most Popular"
+                            android:text="Recommended"
                             android:textSize="20sp"
                             android:textColor="@color/colorAccent"
                             android:fontFamily="sans-serif-medium"
@@ -129,7 +116,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"/>
+                        android:layout_height="200dp"/>
 
                 </LinearLayout>
 
@@ -155,6 +142,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/categories_viewall"
                             android:text="View all"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"/>

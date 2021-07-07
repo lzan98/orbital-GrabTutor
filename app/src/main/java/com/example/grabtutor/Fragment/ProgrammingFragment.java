@@ -53,7 +53,7 @@ public class ProgrammingFragment extends Fragment {
         postAdapter = new PostAdapter(getContext(), postList);
         recyclerViewPosts.setAdapter(postAdapter);
 
-        followingList = new ArrayList<>();
+        //followingList = new ArrayList<>();
 
         readPosts();
 
