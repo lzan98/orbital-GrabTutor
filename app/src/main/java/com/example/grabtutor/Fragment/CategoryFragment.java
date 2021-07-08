@@ -23,6 +23,7 @@ import com.example.grabtutor.R;
 public class CategoryFragment extends Fragment implements View.OnClickListener {
     private ImageView backBtn;
     private RelativeLayout programming;
+    private RelativeLayout fitness;
 
     public static int categoryImages[] = {R.drawable.fitness, R.drawable.music, R.drawable.programming, R.drawable.writing,
     R.drawable.design, R.drawable.data};
@@ -37,6 +38,7 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
         //programming = view.findViewById(R.id.programming);
         backBtn = view.findViewById(R.id.backBtn);
         programming = view.findViewById(R.id.programming);
+        fitness = view.findViewById(R.id.fitness);
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +47,7 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
             }
         });
         programming.setOnClickListener(this);
+        fitness.setOnClickListener(this);
 
 
 
@@ -87,6 +90,10 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.programming:
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProgrammingFragment()).commit();
+                break;
+
+            case R.id.fitness:
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FitnessFragment()).commit();
                 break;
         }
     }

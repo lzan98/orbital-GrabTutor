@@ -1,6 +1,5 @@
 package com.example.grabtutor.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,16 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.grabtutor.Adapter.FeaturedAdapter;
-import com.example.grabtutor.Adapter.PostAdapter;
-import com.example.grabtutor.FeaturedHelperClass;
 import com.example.grabtutor.Model.Post;
-import com.example.grabtutor.Activity.PostActivity;
 import com.example.grabtutor.R;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -46,7 +41,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_home2, container, false);
 
         featuredRecycler = view.findViewById(R.id.featured_recycler);
-        ArrayList<FeaturedHelperClass> featuredPosts = new ArrayList<>();
         categoriesViewAll = view.findViewById(R.id.categories_viewall);
         featuredRecycler.setHasFixedSize(true);
         featuredRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
