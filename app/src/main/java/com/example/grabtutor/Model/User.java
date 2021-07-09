@@ -2,7 +2,7 @@ package com.example.grabtutor.Model;
 
 public class User {
     public String status, email, username, password, profile_picture, id, search, imageurl;
-    public Integer balance;
+    public int balance;
 
     public User() {}
 
@@ -34,7 +34,7 @@ public class User {
         return profile_picture;
     }
 
-    public Integer getBalance() {
+    public int getBalance() {
         return balance;
     }
 

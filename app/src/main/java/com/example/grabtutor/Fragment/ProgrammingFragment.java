@@ -35,7 +35,6 @@ public class ProgrammingFragment extends Fragment {
     private PostAdapter postAdapter;
     private List<Post> postList;
     ImageView newPost;
-    private List<String> followingList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,9 +48,9 @@ public class ProgrammingFragment extends Fragment {
         linearLayoutManager.setReverseLayout(true);
         recyclerViewPosts.setLayoutManager(linearLayoutManager);
         postList = new ArrayList<>();
-        newPost = view.findViewById(R.id.new_post);
         postAdapter = new PostAdapter(getContext(), postList);
         recyclerViewPosts.setAdapter(postAdapter);
+        newPost = view.findViewById(R.id.new_post);
 
         //followingList = new ArrayList<>();
 

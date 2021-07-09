@@ -45,6 +45,7 @@ public class PostProgrammingActivity extends AppCompatActivity {
     private TextView post;
     private EditText description;
     private EditText title;
+    private EditText price;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -59,6 +60,17 @@ public class PostProgrammingActivity extends AppCompatActivity {
         post = findViewById(R.id.post);
         description = findViewById(R.id.description);
         title = findViewById(R.id.title);
+        price = findViewById(R.id.price);
+
+        price.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    price.setText("$");
+                    price.setSelection(1);
+                }
+            }
+        });
 
 
         close.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +125,7 @@ public class PostProgrammingActivity extends AppCompatActivity {
                     map.put("description" , description.getText().toString());
                     map.put("categoryName", "Programming");
                     map.put("title" , title.getText().toString());
+                    map.put("price", price.getText().toString());
                     map.put("publisher" , FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                     ref.child(postId).setValue(map);

@@ -41,4 +41,13 @@
         android:layout_below="@id/bar"
         android:id="@+id/recycler_view"/>
 
+    <Button
+        android:layout_width="220dp"
+        android:layout_height="80dp"
+        android:id="@+id/buyButton"
+        android:text="BUY"
+        android:textSize="30sp"
+        android:layout_gravity="center"
+        android:layout_below="@id/recycler_view"/>
+
 </RelativeLayout>

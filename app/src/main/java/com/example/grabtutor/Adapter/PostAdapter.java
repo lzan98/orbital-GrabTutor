@@ -2,6 +2,8 @@ package com.example.grabtutor.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,7 @@ import com.example.grabtutor.Model.User;
 import com.example.grabtutor.R;
 import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 
@@ -56,6 +59,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         Picasso.get().load(post.getImageurl()).into(holder.postImage);
         holder.description.setText(post.getDescription());
         holder.title.setText(post.getTitle());
+        NumberFormat format = NumberFormat.getCurrencyInstance();
+        holder.price.setText(post.getPrice());
+
 
         FirebaseDatabase.getInstance().getReference().child("Users").child(post.getPublisher()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -127,6 +133,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         public TextView noOfComments;
         TextView title;
         TextView description;
+        TextView price;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
@@ -135,6 +142,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             postImage = itemView.findViewById(R.id.post_image);
             username = itemView.findViewById(R.id.username);
             title = itemView.findViewById(R.id.title);
+            price = itemView.findViewById(R.id.price);
             noOfComments = itemView.findViewById(R.id.no_of_comments);
             description = itemView.findViewById(R.id.description);
 

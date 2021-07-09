@@ -8,17 +8,19 @@ public class Post {
     private String postid;
     private String publisher;
     private String categoryName;
+    private String price;
 
     public Post() {
     }
 
-    public Post(String title, String description, String imageurl, String categoryName, String postid, String publisher) {
+    public Post(String title, String description, String imageurl, String categoryName, String price, String postid, String publisher) {
         this.description = description;
         this.imageurl = imageurl;
         this.postid = postid;
         this.title = title;
         this.publisher = publisher;
         this.categoryName = categoryName;
+        this.price = price;
     }
 
     public String getDescription() {
@@ -56,6 +58,8 @@ public class Post {
     public String getPublisher() {
         return publisher;
     }
+
+    public String getPrice() { return price; }
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
