@@ -1,6 +1,5 @@
 package com.example.grabtutor.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,15 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 
-import com.example.grabtutor.Activity.MainActivity;
-import com.example.grabtutor.Adapter.CategoryAdapter;
 import com.example.grabtutor.R;
 
 
@@ -24,10 +17,6 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
     private ImageView backBtn;
     private RelativeLayout programming;
     private RelativeLayout fitness;
-
-    public static int categoryImages[] = {R.drawable.fitness, R.drawable.music, R.drawable.programming, R.drawable.writing,
-    R.drawable.design, R.drawable.data};
-    public static String categoryNames[] = {"Fitness", "Music", "Programming", "Writing", "Graphic Design", "Databases"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,8 +37,6 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
         fitness.setOnClickListener(this);
 
 
-
-        CategoryAdapter adapter = new CategoryAdapter(getActivity());
 
         return view;
     }

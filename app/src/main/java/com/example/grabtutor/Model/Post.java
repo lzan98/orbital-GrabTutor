@@ -9,6 +9,7 @@ public class Post {
     private String publisher;
     private String categoryName;
     private String price;
+    private int rating;
 
     public Post() {
     }
@@ -21,6 +22,7 @@ public class Post {
         this.publisher = publisher;
         this.categoryName = categoryName;
         this.price = price;
+        this.rating = 0;
     }
 
     public String getDescription() {
@@ -63,6 +65,10 @@ public class Post {
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
+    }
+
+    public int getRating() {
+        return rating;
     }
 }
 

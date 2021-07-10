@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +29,7 @@ public class ReviewOrderActivity extends AppCompatActivity {
     private String postId, userId;
     ImageView image;
     TextView title, desc, price, creditBalance;
+    Button leaveReview;
     private Context mContext;
     private Post mPost;
     private Button paymentButton;
@@ -44,6 +47,7 @@ public class ReviewOrderActivity extends AppCompatActivity {
         price = findViewById(R.id.price);
         creditBalance = findViewById(R.id.creditBalance);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        leaveReview = findViewById(R.id.leaveReview);
 
         FirebaseDatabase.getInstance().getReference().child("Posts").child(postId).addValueEventListener(new ValueEventListener() {
             @Override
@@ -75,5 +79,12 @@ public class ReviewOrderActivity extends AppCompatActivity {
             }
         });
 
+        leaveReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ReviewOrderActivity.this, LeaveReviewActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

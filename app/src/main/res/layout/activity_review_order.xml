@@ -93,6 +93,14 @@
                 android:id="@+id/paymentButton"
                 android:textSize="25sp">
             </Button>
+            <Button
+                android:layout_width="380dp"
+                android:layout_height="80dp"
+                android:text="Leave Review"
+                android:layout_below="@id/paymentButton"
+                android:id="@+id/leaveReview"
+                android:textSize="25sp">
+            </Button>
 
         </RelativeLayout>
 
