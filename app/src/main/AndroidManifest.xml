@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GrabTutor">
-        <activity android:name=".Activity.LeaveReviewActivity"></activity>
+        <activity android:name=".Activity.ReviewActivity"></activity>
+        <activity android:name=".Activity.LeaveReviewActivity" />
         <activity android:name=".Activity.PostProgrammingActivity" />
         <activity android:name=".Activity.PostMusicActivity" />
         <activity android:name=".Activity.PostFitnessActivity" />

@@ -44,7 +44,7 @@ public class LeaveReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leave_review);
 
-        getSupportActionBar().setTitle("Reviews");
+        getSupportActionBar().setTitle("Review");
         postId = getSharedPreferences("PREFS", Context.MODE_PRIVATE).getString("postid", "none");
         btn = findViewById(R.id.reviewSubmit);
         reviewEt = findViewById(R.id.reviewInput);
@@ -72,8 +72,8 @@ public class LeaveReviewActivity extends AppCompatActivity {
     }
 
     private void loadPostInfo() {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.child("Posts").child(postId).addValueEventListener(new ValueEventListener() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
+        ref.child(postId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 String title = "" +snapshot.child("title").getValue();
@@ -88,7 +88,7 @@ public class LeaveReviewActivity extends AppCompatActivity {
     }
 
     private void loadMyReview() {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
         ref.child(postId).child("Ratings").child(userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -133,8 +133,8 @@ public class LeaveReviewActivity extends AppCompatActivity {
         hashMap.put("timestamp", "" + timestamp);
 
         //put to Database: User > postId > Ratings
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.child(firebaseAuth.getUid()).child("Ratings").child(postId).updateChildren(hashMap)
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
+        ref.child(postId).child("Ratings").child(firebaseAuth.getUid()).updateChildren(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {

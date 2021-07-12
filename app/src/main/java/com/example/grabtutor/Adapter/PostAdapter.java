@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.example.grabtutor.Fragment.ProfileFragment;
@@ -27,6 +29,8 @@ import com.example.grabtutor.Model.Post;
 import com.example.grabtutor.Model.User;
 import com.example.grabtutor.R;
 import com.squareup.picasso.Picasso;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.NumberFormat;
 import java.util.HashMap;
@@ -61,7 +65,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         holder.title.setText(post.getTitle());
         NumberFormat format = NumberFormat.getCurrencyInstance();
         holder.price.setText(post.getPrice());
-
 
         FirebaseDatabase.getInstance().getReference().child("Users").child(post.getPublisher()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -131,6 +134,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         public TextView noOfLikes;
         public TextView author;
         public TextView noOfComments;
+        public RatingBar ratingBar;
         TextView title;
         TextView description;
         TextView price;
@@ -145,6 +149,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             price = itemView.findViewById(R.id.price);
             noOfComments = itemView.findViewById(R.id.no_of_comments);
             description = itemView.findViewById(R.id.description);
+            ratingBar = itemView.findViewById(R.id.ratingBar);
 
         }
     }

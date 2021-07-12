@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -104,6 +105,7 @@ public class SimplePostAdapter extends RecyclerView.Adapter<SimplePostAdapter.Vi
     }
 
 
+
     @Override
     public int getItemCount() {
         return mPosts.size();
@@ -113,13 +115,9 @@ public class SimplePostAdapter extends RecyclerView.Adapter<SimplePostAdapter.Vi
 
         public ImageView imageProfile;
         public ImageView postImage;
-        public ImageView like;
         public ImageView comment;
-        public ImageView save;
-        public ImageView more;
 
         public TextView username;
-        public TextView noOfLikes;
         public TextView author;
         public TextView noOfComments;
         TextView title;
