@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.grabtutor.Activity.PostDatabaseActivity;
+import com.example.grabtutor.Activity.PostDataAnalyticsActivity;
 import com.example.grabtutor.Adapter.PostAdapter;
 import com.example.grabtutor.Model.Post;
 import com.example.grabtutor.R;
@@ -56,7 +56,7 @@ public class DataAnalyticsFragment extends Fragment {
         newPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), PostDatabaseActivity.class));
+                startActivity(new Intent(getActivity(), PostDataAnalyticsActivity.class));
             }
         });
 

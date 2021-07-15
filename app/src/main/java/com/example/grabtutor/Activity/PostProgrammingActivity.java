@@ -25,6 +25,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.EditText;
@@ -62,15 +64,19 @@ public class PostProgrammingActivity extends AppCompatActivity {
         title = findViewById(R.id.title);
         price = findViewById(R.id.price);
 
-        price.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    price.setText("$");
-                    price.setSelection(1);
+        InputFilter filter = new InputFilter() {
+            public CharSequence filter(CharSequence source, int start, int end,
+                                       Spanned dest, int dstart, int dend) {
+                for (int i = start; i < end; i++) {
+                    if (!Character.isDigit(source.charAt(i))) {
+                        return "";
+                    }
                 }
+                return null;
             }
-        });
+        };
+
+        price.setFilters(new InputFilter[]{filter});
 
 
         close.setOnClickListener(new View.OnClickListener() {

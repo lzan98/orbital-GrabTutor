@@ -15,7 +15,7 @@
         <activity android:name=".Activity.PostMusicActivity" />
         <activity android:name=".Activity.PostFitnessActivity" />
         <activity android:name=".Activity.PostDesignActivity" />
-        <activity android:name=".Activity.PostDatabaseActivity" />
+        <activity android:name=".Activity.PostDataAnalyticsActivity" />
         <activity android:name=".Activity.PostWritingActivity" />
         <activity
             android:name=".Activity.SignUpActivity"
