@@ -1,11 +1,13 @@
 package com.example.grabtutor.Fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Rating;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,8 +18,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
+import com.example.grabtutor.Activity.LoginActivity;
+import com.example.grabtutor.Activity.MainActivity;
 import com.example.grabtutor.Activity.PostFitnessActivity;
+import com.example.grabtutor.Activity.PostMusicActivity;
 import com.example.grabtutor.Activity.ReviewActivity;
 import com.example.grabtutor.Activity.ReviewOrderActivity;
 import com.example.grabtutor.Adapter.PostAdapter;
@@ -25,6 +31,8 @@ import com.example.grabtutor.Adapter.ReviewAdapter;
 import com.example.grabtutor.Model.Post;
 import com.example.grabtutor.Model.Review;
 import com.example.grabtutor.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,8 +50,9 @@ public class PostDetailFragment extends Fragment {
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
     private List<Post> postList;
-    private Button buyButton;
-    ImageButton reviewsBtn;
+    private Button buyButton, removeButton;
+    private ImageButton reviewsBtn;
+    private FirebaseAuth firebaseAuth;
     private RatingBar ratingBar;
 
 
@@ -61,8 +70,10 @@ public class PostDetailFragment extends Fragment {
         postAdapter = new PostAdapter(getContext(), postList);
         recyclerView.setAdapter(postAdapter);
         buyButton = view.findViewById(R.id.buyButton);
+        removeButton = view.findViewById(R.id.removeButton);
         reviewsBtn = view.findViewById(R.id.rating);
         ratingBar = view.findViewById(R.id.ratingBar);
+        firebaseAuth = FirebaseAuth.getInstance();
         
         loadReviews();
 
@@ -73,10 +84,41 @@ public class PostDetailFragment extends Fragment {
                 postList.add(dataSnapshot.getValue(Post.class));
 
                 postAdapter.notifyDataSetChanged();
+
+                if (firebaseAuth.getUid().equals(dataSnapshot.child("publisher").getValue())) {
+
+                    buyButton.setVisibility(View.INVISIBLE);
+                }
+                else {
+                    removeButton.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("Remove Post")
+                        .setMessage("Are you sure?")
+                        .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseDatabase.getInstance().getReference().child("Posts").child(postId).removeValue();
+                        getActivity().getSupportFragmentManager().popBackStack();
+
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                }).setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
 
             }
         });

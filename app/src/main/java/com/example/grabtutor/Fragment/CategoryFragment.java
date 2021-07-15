@@ -15,8 +15,7 @@ import com.example.grabtutor.R;
 
 public class CategoryFragment extends Fragment implements View.OnClickListener {
     private ImageView backBtn;
-    private RelativeLayout programming;
-    private RelativeLayout fitness;
+    private RelativeLayout programming, fitness, writing, music, design, dataAnalytics;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,6 +25,10 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
         backBtn = view.findViewById(R.id.backBtn);
         programming = view.findViewById(R.id.programming);
         fitness = view.findViewById(R.id.fitness);
+        writing = view.findViewById(R.id.writing);
+        music = view.findViewById(R.id.music);
+        design = view.findViewById(R.id.design);
+        dataAnalytics = view.findViewById(R.id.dataAnalytics);
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +38,10 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
         });
         programming.setOnClickListener(this);
         fitness.setOnClickListener(this);
+        writing.setOnClickListener(this);
+        music.setOnClickListener(this);
+        design.setOnClickListener(this);
+        dataAnalytics.setOnClickListener(this);
 
 
 
@@ -50,6 +57,22 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
 
             case R.id.fitness:
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FitnessFragment()).commit();
+                break;
+
+            case R.id.writing:
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WritingFragment()).commit();
+                break;
+
+            case R.id.music:
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MusicFragment()).commit();
+                break;
+
+            case R.id.design:
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DesignFragment()).commit();
+                break;
+
+            case R.id.dataAnalytics:
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DataAnalyticsFragment()).commit();
                 break;
         }
     }

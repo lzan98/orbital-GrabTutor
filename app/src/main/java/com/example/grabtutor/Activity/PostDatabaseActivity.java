@@ -5,12 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.canhub.cropper.CropImage;
-import com.example.grabtutor.Fragment.CategoryFragment;
-import com.example.grabtutor.Fragment.DataBaseFragment;
-import com.example.grabtutor.Fragment.DesignFragment;
-import com.example.grabtutor.Fragment.HomeFragment;
-import com.example.grabtutor.Fragment.MusicFragment;
-import com.example.grabtutor.Fragment.ProgrammingFragment;
+import com.example.grabtutor.Fragment.DataAnalyticsFragment;
 import com.example.grabtutor.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -149,7 +144,7 @@ public class PostDatabaseActivity extends AppCompatActivity {
             imageAdded.setImageURI(imageUri);
         } else {
             Toast.makeText(this, "Try again!", Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DataBaseFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DataAnalyticsFragment()).commit();
             finish();
         }
     }

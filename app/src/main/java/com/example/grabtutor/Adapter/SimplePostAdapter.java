@@ -99,7 +99,7 @@ public class SimplePostAdapter extends RecyclerView.Adapter<SimplePostAdapter.Vi
                 mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postid", post.getPostid()).apply();
 
                 ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new PostDetailFragment()).commit();
+                        .replace(R.id.fragment_container, new PostDetailFragment()).addToBackStack(null).commit();
             }
         });
     }

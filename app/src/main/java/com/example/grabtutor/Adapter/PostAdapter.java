@@ -60,24 +60,25 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
     public void onBindViewHolder(@NonNull final Viewholder holder, int position) {
 
         final Post post = mPosts.get(position);
-        Picasso.get().load(post.getImageurl()).into(holder.postImage);
-        holder.description.setText(post.getDescription());
-        holder.title.setText(post.getTitle());
-        NumberFormat format = NumberFormat.getCurrencyInstance();
-        holder.price.setText(post.getPrice());
+        if (post != null) {
+            Picasso.get().load(post.getImageurl()).into(holder.postImage);
+            holder.description.setText(post.getDescription());
+            holder.title.setText(post.getTitle());
+            NumberFormat format = NumberFormat.getCurrencyInstance();
+            holder.price.setText(post.getPrice());
 
-        FirebaseDatabase.getInstance().getReference().child("Users").child(post.getPublisher()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                Picasso.get().load(user.getProfile_picture()).placeholder(R.mipmap.ic_launcher).into(holder.imageProfile);
-                holder.username.setText(user.getUsername());//user.getUsername());
-            }
+            FirebaseDatabase.getInstance().getReference().child("Users").child(post.getPublisher()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    User user = dataSnapshot.getValue(User.class);
+                    Picasso.get().load(user.getProfile_picture()).placeholder(R.mipmap.ic_launcher).into(holder.imageProfile);
+                    holder.username.setText(user.getUsername());//user.getUsername());
+                }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
 
 
         /*holder.imageProfile.setOnClickListener(new View.OnClickListener() {
@@ -103,15 +104,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         });
          */
 
-        holder.postImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postid", post.getPostid()).apply();
+            holder.postImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postid", post.getPostid()).apply();
 
-                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new PostDetailFragment()).commit();
-            }
-        });
+                    ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new PostDetailFragment()).commit();
+                }
+            });
+        }
 
 
     }

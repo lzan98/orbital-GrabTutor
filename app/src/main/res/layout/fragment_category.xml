@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:text="Programming"
                 android:textSize="25sp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textFontWeight="500"
                 android:fontFamily="@font/brandon_grotesque_black"
                 android:padding="25dp"/>
@@ -97,6 +97,69 @@
                 android:text="Writing"
                 android:textFontWeight="500"
                 android:textSize="25sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/brandon_grotesque_black"
+                android:padding="25dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="350dp"
+            android:layout_height="150dp"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/music_background"
+            android:id="@+id/music">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Music"
+                android:textFontWeight="500"
+                android:textSize="25sp"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/black"
+                android:fontFamily="@font/brandon_grotesque_black"
+                android:padding="25dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="350dp"
+            android:layout_height="150dp"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/design_background"
+            android:id="@+id/design">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Design"
+                android:textFontWeight="500"
+                android:textSize="25sp"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/black"
+                android:fontFamily="@font/brandon_grotesque_black"
+                android:padding="25dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="350dp"
+            android:layout_height="150dp"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/database_background"
+            android:id="@+id/dataAnalytics">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Analytics"
+                android:textFontWeight="500"
+                android:textSize="25sp"
+                android:layout_alignParentRight="true"
                 android:textColor="@color/black"
                 android:fontFamily="@font/brandon_grotesque_black"
                 android:padding="25dp"/>
