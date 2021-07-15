@@ -18,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.grabtutor.Activity.LoginActivity;
@@ -51,7 +53,8 @@ public class PostDetailFragment extends Fragment {
     private PostAdapter postAdapter;
     private List<Post> postList;
     private Button buyButton, removeButton;
-    private ImageButton reviewsBtn;
+    private TextView rating, numOfRating;
+    private RelativeLayout reviewLayout;
     private FirebaseAuth firebaseAuth;
     private RatingBar ratingBar;
 
@@ -71,8 +74,10 @@ public class PostDetailFragment extends Fragment {
         recyclerView.setAdapter(postAdapter);
         buyButton = view.findViewById(R.id.buyButton);
         removeButton = view.findViewById(R.id.removeButton);
-        reviewsBtn = view.findViewById(R.id.rating);
+        rating = view.findViewById(R.id.rating);
         ratingBar = view.findViewById(R.id.ratingBar);
+        reviewLayout = view.findViewById(R.id.reviewLayout);
+        numOfRating = view.findViewById(R.id.numOfRating);
         firebaseAuth = FirebaseAuth.getInstance();
         
         loadReviews();
@@ -131,7 +136,7 @@ public class PostDetailFragment extends Fragment {
             }
         });
 
-        ratingBar.setOnClickListener(new View.OnClickListener() {
+        reviewLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ReviewActivity.class);
@@ -143,23 +148,30 @@ public class PostDetailFragment extends Fragment {
         return view;
     }
 
-    private float ratingSum = 0;
     private void loadReviews() {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
         ref.child(postId).child("Ratings").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                ratingSum = 0;
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    float rating = Float.parseFloat("" + ds.child("ratings").getValue());
-                    ratingSum = ratingSum + rating;
+                float ratingSum = 0;
+                long numberOfReviews = 0;
+                if (snapshot.exists()) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        float rating = Float.parseFloat("" + ds.child("ratings").getValue());
+                        ratingSum = ratingSum + rating;
+                    }
+                    numberOfReviews = snapshot.getChildrenCount();
+                    ratingSum = ratingSum / numberOfReviews;
+                } else {
+                    ratingSum = 0;
+
                 }
 
+                numberOfReviews = snapshot.getChildrenCount();
+                rating.setText("" + ratingSum);
+                numOfRating.setText("(" + numberOfReviews + ")");
 
-                long numberOfReviews = snapshot.getChildrenCount();
-                float avgRating = ratingSum/numberOfReviews;
-                ratingBar.setRating(avgRating);
             }
 
             @Override

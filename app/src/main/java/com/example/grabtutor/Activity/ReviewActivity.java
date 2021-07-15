@@ -80,7 +80,7 @@ public class ReviewActivity extends AppCompatActivity {
 
                 long numberOfReviews = snapshot.getChildrenCount();
                 float avgRating = ratingSum/numberOfReviews;
-                ratingsTv.setText(String.format("%.2f", avgRating) + "(" + numberOfReviews + ")");
+                ratingsTv.setText(String.format("%.1f", avgRating) + "(" + numberOfReviews + ")");
                 ratingBar.setRating(avgRating);
             }
 

@@ -26,6 +26,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.EditText;
@@ -45,6 +47,7 @@ public class PostMusicActivity extends AppCompatActivity {
     private TextView post;
     private EditText description;
     private EditText title;
+    private EditText price;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -59,6 +62,22 @@ public class PostMusicActivity extends AppCompatActivity {
         post = findViewById(R.id.post);
         description = findViewById(R.id.description);
         title = findViewById(R.id.title);
+        price = findViewById(R.id.price);
+
+        //restrict username to alphanumeric characters only
+        InputFilter filter = new InputFilter() {
+            public CharSequence filter(CharSequence source, int start, int end,
+                                       Spanned dest, int dstart, int dend) {
+                for (int i = start; i < end; i++) {
+                    if (!Character.isDigit(source.charAt(i))) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+
+        price.setFilters(new InputFilter[]{filter});
 
 
         close.setOnClickListener(new View.OnClickListener() {
@@ -70,8 +89,30 @@ public class PostMusicActivity extends AppCompatActivity {
 
 
         post.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+
+                String titleET = title.getText().toString().trim();
+                String descET = description.getText().toString();
+                String priceET = price.getText().toString();
+
+                if (titleET.isEmpty()) {
+                    title.setError("Title is required!");
+                    title.requestFocus();
+                    return;
+                }
+                if (descET.isEmpty()) {
+                    description.setError("Description is required!");
+                    description.requestFocus();
+                    return;
+                }
+                if (priceET.isEmpty()) {
+                    price.setError("Price is required!");
+                    price.requestFocus();
+                    return;
+                }
+
                 upload();
             }
         });

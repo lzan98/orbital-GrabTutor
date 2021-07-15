@@ -13,13 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.grabtutor.Activity.PostActivity;
 import com.example.grabtutor.Activity.PostFitnessActivity;
-import com.example.grabtutor.Adapter.PostAdapter;
 import com.example.grabtutor.Adapter.SimplePostAdapter;
 import com.example.grabtutor.Model.Post;
 import com.example.grabtutor.R;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -34,7 +31,6 @@ public class FitnessFragment extends Fragment {
     private SimplePostAdapter simplePostAdapter;
     private List<Post> postList;
     ImageView newPost;
-    private List<String> followingList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +48,6 @@ public class FitnessFragment extends Fragment {
         simplePostAdapter = new SimplePostAdapter(getContext(), postList);
         recyclerViewPosts.setAdapter(simplePostAdapter);
 
-        followingList = new ArrayList<>();
 
         readPosts();
 

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="180dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="2dp"
+    android:paddingTop="10dp"
+    android:layout_marginBottom="4dp"
     app:cardElevation="8dp"
-    android:layout_margin="10dp">
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,42 +18,69 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/post_image"
                 android:layout_width="180dp"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_search"/>
+                android:src="@drawable/ic_search" />
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/ratingStar"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="14dp"
                 android:layout_toRightOf="@id/post_image"
-                android:src="@drawable/ic_star"
-                android:background="@color/white"
-                android:id="@+id/rating"/>
+                android:background="@drawable/ic_reviewstar" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/username"
-                android:textSize="16sp"
-                android:layout_toRightOf="@+id/post_image"
-                android:layout_below="@id/rating"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_margin="5dp"/>
+                android:id="@+id/rating"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="14dp"
+                android:layout_toRightOf="@+id/ratingStar"
+                android:gravity="center"
+                android:text="5.0"
+                android:textColor="@color/yellow"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
             <TextView
+                android:id="@+id/numOfRating"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="14dp"
+                android:layout_toRightOf="@+id/rating"
+                android:gravity="center"
+                android:text="(3)"
+                android:textColor="@color/grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/ratingStar"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="14dp"
                 android:layout_toRightOf="@+id/post_image"
-                android:layout_marginStart="10dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
+                android:text="Title"
                 android:textColor="@color/black"
-                android:layout_below="@id/username"
-                android:id="@+id/title"/>
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:padding="10dp"
+                android:text="price"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
         </RelativeLayout>
     </LinearLayout>
 

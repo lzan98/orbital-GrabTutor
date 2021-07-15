@@ -13,13 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.grabtutor.Activity.PostActivity;
 import com.example.grabtutor.Activity.PostDesignActivity;
-import com.example.grabtutor.Activity.PostFitnessActivity;
 import com.example.grabtutor.Adapter.PostAdapter;
 import com.example.grabtutor.Model.Post;
 import com.example.grabtutor.R;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;

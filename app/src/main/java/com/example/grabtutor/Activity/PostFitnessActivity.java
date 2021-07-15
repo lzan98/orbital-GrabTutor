@@ -44,6 +44,7 @@ public class PostFitnessActivity extends AppCompatActivity {
     private TextView post;
     private EditText description;
     private EditText title;
+    private EditText price;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 

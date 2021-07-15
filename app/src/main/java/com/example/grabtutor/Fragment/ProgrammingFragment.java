@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,13 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.grabtutor.Activity.PostActivity;
-import com.example.grabtutor.Activity.PostFitnessActivity;
 import com.example.grabtutor.Activity.PostProgrammingActivity;
 import com.example.grabtutor.Adapter.PostAdapter;
+import com.example.grabtutor.Adapter.SimplePostAdapter;
 import com.example.grabtutor.Model.Post;
 import com.example.grabtutor.R;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,7 +29,7 @@ import java.util.List;
 
 public class ProgrammingFragment extends Fragment {
     private RecyclerView recyclerViewPosts;
-    private PostAdapter postAdapter;
+    private SimplePostAdapter simplePostAdapter;
     private List<Post> postList;
     ImageView newPost;
 
@@ -48,8 +45,8 @@ public class ProgrammingFragment extends Fragment {
         linearLayoutManager.setReverseLayout(true);
         recyclerViewPosts.setLayoutManager(linearLayoutManager);
         postList = new ArrayList<>();
-        postAdapter = new PostAdapter(getContext(), postList);
-        recyclerViewPosts.setAdapter(postAdapter);
+        simplePostAdapter = new SimplePostAdapter(getContext(), postList);
+        recyclerViewPosts.setAdapter(simplePostAdapter);
         newPost = view.findViewById(R.id.new_post);
 
         //followingList = new ArrayList<>();
@@ -78,7 +75,7 @@ public class ProgrammingFragment extends Fragment {
                         postList.add(post);
                     }
                 }
-                postAdapter.notifyDataSetChanged();
+                simplePostAdapter.notifyDataSetChanged();
             }
 
             @Override

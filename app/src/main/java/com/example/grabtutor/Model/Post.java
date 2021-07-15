@@ -9,7 +9,7 @@ public class Post {
     private String publisher;
     private String categoryName;
     private String price;
-    private int rating;
+    private float rating;
 
     public Post() {
     }
@@ -67,7 +67,7 @@ public class Post {
         this.publisher = publisher;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 }
