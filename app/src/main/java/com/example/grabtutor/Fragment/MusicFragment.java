@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.grabtutor.Activity.PostMusicActivity;
 import com.example.grabtutor.Adapter.PostAdapter;
@@ -30,19 +31,22 @@ public class MusicFragment extends Fragment {
     private RecyclerView recyclerViewPosts;
     private PostAdapter postAdapter;
     private List<Post> postList;
+    private TextView categoryName;
     ImageView newPost;
     private List<String> followingList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment_music, container, false);
+        View view =inflater.inflate(R.layout.fragment_individual_category, container, false);
 
         recyclerViewPosts = view.findViewById(R.id.recycler_view_posts);
         recyclerViewPosts.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.setReverseLayout(true);
+        categoryName = view.findViewById(R.id.categoryName);
+        categoryName.setText("Music");
         recyclerViewPosts.setLayoutManager(linearLayoutManager);
         postList = new ArrayList<>();
         newPost = view.findViewById(R.id.new_post);

@@ -5,9 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.canhub.cropper.CropImage;
-import com.example.grabtutor.Fragment.CategoryFragment;
-import com.example.grabtutor.Fragment.DesignFragment;
-import com.example.grabtutor.Fragment.HomeFragment;
 import com.example.grabtutor.Fragment.ProgrammingFragment;
 import com.example.grabtutor.R;
 import com.google.android.gms.tasks.Continuation;
@@ -30,7 +27,6 @@ import android.text.Spanned;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;

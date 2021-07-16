@@ -9,13 +9,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
 
-import com.example.grabtutor.Fragment.CategoryFragment;
+import com.example.grabtutor.Fragment.SearchFragment;
 import com.example.grabtutor.Fragment.ProfileFragment;
 import com.example.grabtutor.Fragment.FavouriteFragment;
-import com.example.grabtutor.Fragment.HomeFragment;
 import com.example.grabtutor.Fragment.MessagesFragment;
 import com.example.grabtutor.R;
-import com.example.grabtutor.Fragment.SearchFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
                     switch (item.getItemId()) {
                         case R.id.nav_home:
-                            selectedFragment = new CategoryFragment();
+                            selectedFragment = new SearchFragment();
                             break;
                         case R.id.nav_favourites:
                             selectedFragment = new FavouriteFragment();
@@ -76,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new CategoryFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new SearchFragment()).commit();
 
 
         firebaseAuth = FirebaseAuth.getInstance();

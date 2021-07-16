@@ -41,6 +41,7 @@
             android:textSize="30sp"
             android:padding="10dp"
             android:fontFamily="@font/brandon_grotesque_black"
+            android:textColor="@color/colorAccent"
             android:textAllCaps="true"/>
 
         <RelativeLayout
