@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.grabtutor.Adapter.PaymentHistoryAdapter;
+import com.example.grabtutor.Model.PaymentHistory;
 import com.example.grabtutor.R;
 
 public class Payment extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -26,7 +28,7 @@ public class Payment extends AppCompatActivity implements AdapterView.OnItemClic
         listView = findViewById(R.id.ListView_payment);
         back = findViewById(R.id.button_payment_back);
 
-        String[] management =  {"Top up", "Earnings"};
+        String[] management =  {"Top up", "History"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(Payment.this, android.R.layout.simple_list_item_1, management);
 
@@ -48,12 +50,13 @@ public class Payment extends AppCompatActivity implements AdapterView.OnItemClic
 
         // position 0 = TopUp
         if (position == 0) {
-           Intent intent = new Intent(Payment.this, TopUp.class);
+           Intent intent = new Intent(Payment.this, PaymentMethodActivity.class);
            startActivity(intent);
         }
         // position 1 = Earnings
         if (position == 1) {
-            Toast.makeText(this, "Work in Progress", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Payment.this, PaymentHistoryActivity.class);
+            startActivity(intent);
         }
     }
 }

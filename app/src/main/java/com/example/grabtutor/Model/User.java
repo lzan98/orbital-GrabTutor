@@ -2,7 +2,7 @@ package com.example.grabtutor.Model;
 
 public class User {
     public String status, email, username, password, profile_picture, id, search, imageurl;
-    public int balance;
+    public int balance, points;
 
     public User() {}
 
@@ -16,6 +16,7 @@ public class User {
         this.id = id;
         this.status = status;
         this.search = username.toLowerCase();
+        this.points = 0;
     }
 
     public String getEmail() {
@@ -48,5 +49,9 @@ public class User {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getSearch() {
+        return search;
     }
 }

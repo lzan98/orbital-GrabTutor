@@ -9,13 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GrabTutor">
-        <activity android:name=".Activity.ReviewActivity"></activity>
+        <activity android:name=".Activity.RedeemRewardsActivity"></activity>
+        <activity android:name=".Activity.AddRewardsAdmin" />
+        <activity android:name=".Activity.RewardsHistoryActivity" />
+        <activity android:name=".Activity.RewardsRedemptionActivity" />
+        <activity android:name=".Activity.Rewards" />
+        <activity android:name=".Activity.CredentialsHistoryActivity" />
+        <activity android:name=".Activity.UploadCredentialsActivity" />
+        <activity android:name=".Activity.Credentials" />
+        <activity android:name=".Activity.PaymentHistoryActivity" />
+        <activity android:name=".Activity.PaymentConfirmationActivity" />
+        <activity android:name=".Activity.DogeCoinPaymentActivity" />
+        <activity android:name=".Activity.BitCoinPaymentActivity" />
+        <activity android:name=".Activity.CryptoPaymentActivity" />
+        <activity android:name=".Activity.BankPaymentActivity" />
+        <activity android:name=".Activity.PaymentMethodActivity" />
         <activity android:name=".Activity.LeaveReviewActivity" />
+        <activity android:name=".Activity.ReviewActivity" />
         <activity android:name=".Activity.PostProgrammingActivity" />
         <activity android:name=".Activity.PostMusicActivity" />
         <activity android:name=".Activity.PostFitnessActivity" />
-        <activity android:name=".Activity.PostDesignActivity" />
         <activity android:name=".Activity.PostDataAnalyticsActivity" />
+        <activity android:name=".Activity.PostDesignActivity" />
         <activity android:name=".Activity.PostWritingActivity" />
         <activity
             android:name=".Activity.SignUpActivity"
@@ -35,7 +50,7 @@
         <activity
             android:name=".Activity.TopUp"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity
+                <activity
             android:name=".Activity.EditUserProfileActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity

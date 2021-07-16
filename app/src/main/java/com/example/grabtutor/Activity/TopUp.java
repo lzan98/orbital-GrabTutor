@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.grabtutor.Model.PaymentHistory;
 import com.example.grabtutor.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Calendar;
 
 public class TopUp extends AppCompatActivity{
 
@@ -123,13 +126,20 @@ public class TopUp extends AppCompatActivity{
                             topUpAmount.getText().clear();
                         } if (Integer.parseInt(amount) > maxTopUp) {
                             Toast.makeText(TopUp.this, "Maximum of $" + maxTopUp.toString() + " more allowed for top up", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
+                        } else {
                             Integer newBalance = initBalance + Integer.parseInt(amount);
                             ref.child(user.getUid()).child("balance").setValue(newBalance);
                             currentBalance.setText("$" + newBalance.toString());
                             topUpAmount.getText().clear();
                             Toast.makeText(TopUp.this, "$" + amount + " added successfully", Toast.LENGTH_SHORT).show();
+
+                        String currentTime = Calendar.getInstance().getTime().toString();
+                        String uNumber = Long.toString(Calendar.getInstance().getTimeInMillis());
+                        String refNumber = mAuth.getCurrentUser().getUid() + uNumber;
+                        PaymentHistory paymentHistory = new PaymentHistory(refNumber
+                                , amount + " SGD", "Completed", "Test Top-Up", currentTime);
+                        FirebaseDatabase.getInstance().getReference("PaymentHistory").child(mAuth.getCurrentUser().getUid()).child(mAuth.getCurrentUser().getUid() + refNumber).setValue(paymentHistory);
+                        startActivity(new Intent(TopUp.this, MainActivity.class));
                           }
                 } else {
                     Toast.makeText(TopUp.this, "Error", Toast.LENGTH_SHORT).show();

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -161,7 +162,28 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                LOGIN();
+                if (!Patterns.EMAIL_ADDRESS.matcher(et_username.getText().toString().trim()).matches()) {
+                    FirebaseDatabase.getInstance().getReference("UsernameList").
+                            child(et_username.getText().toString().trim()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
+                                String email_db = snapshot.child("email").getValue(String.class);
+                                String password_db = snapshot.child("password").getValue(String.class);
+                                LOGIN(email_db, password_db);
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Username does not exist in the database", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                        }
+                    });
+                }
+
+                LOGIN(et_username.getText().toString().trim(), et_password.getText().toString().trim());
             }
         });
 
@@ -225,10 +247,24 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                            User user = new User(firebaseUser.getEmail(), firebaseUser.getDisplayName(), "NA", firebaseUser.getUid(), "offline", "default");
-                            ref.child(firebaseUser.getUid()).setValue(user);
+                            FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                    if (snapshot.exists()) {
+                                        startActivity(intent);
+                                    } else {
+                                        User user = new User(firebaseUser.getEmail(), firebaseUser.getDisplayName(), "NA", firebaseUser.getUid(), "offline", "default");
+                                        ref.child(firebaseUser.getUid()).setValue(user);
+                                        startActivity(intent);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                                }
+                            });
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -269,9 +305,9 @@ public class LoginActivity extends AppCompatActivity {
 //        }
 //    };
 
-    private void LOGIN() {
+    private void LOGIN(String username, String password) {
         progressBar.setVisibility(View.VISIBLE);
-        mAuth.signInWithEmailAndPassword(et_username.getText().toString().trim(), et_password.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
