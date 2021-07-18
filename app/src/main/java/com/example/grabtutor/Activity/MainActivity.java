@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.example.grabtutor.Fragment.CategoryFragment;
 import com.example.grabtutor.Fragment.SearchFragment;
 import com.example.grabtutor.Fragment.ProfileFragment;
 import com.example.grabtutor.Fragment.FavouriteFragment;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
                     switch (item.getItemId()) {
                         case R.id.nav_home:
-                            selectedFragment = new SearchFragment();
+                            selectedFragment = new CategoryFragment();
                             break;
                         case R.id.nav_favourites:
                             selectedFragment = new FavouriteFragment();
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new SearchFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new CategoryFragment()).commit();
 
 
         firebaseAuth = FirebaseAuth.getInstance();

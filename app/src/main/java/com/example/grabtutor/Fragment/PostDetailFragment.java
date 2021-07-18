@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,11 +53,10 @@ public class PostDetailFragment extends Fragment {
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
     private List<Post> postList;
-    private Button buyButton, removeButton;
+    private Button buyButton, removeButton, chatButton;
     private TextView rating, numOfRating;
-    private RelativeLayout reviewLayout;
     private FirebaseAuth firebaseAuth;
-    private RatingBar ratingBar;
+    private CardView reviewCard;
 
 
     @Override
@@ -75,10 +75,12 @@ public class PostDetailFragment extends Fragment {
         buyButton = view.findViewById(R.id.buyButton);
         removeButton = view.findViewById(R.id.removeButton);
         rating = view.findViewById(R.id.rating);
-        ratingBar = view.findViewById(R.id.ratingBar);
-        reviewLayout = view.findViewById(R.id.reviewLayout);
+        reviewCard = view.findViewById(R.id.reviewCard);
         numOfRating = view.findViewById(R.id.numOfRating);
+        chatButton = view.findViewById(R.id.chatButton);
         firebaseAuth = FirebaseAuth.getInstance();
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
         
         loadReviews();
 
@@ -136,12 +138,19 @@ public class PostDetailFragment extends Fragment {
             }
         });
 
-        reviewLayout.setOnClickListener(new View.OnClickListener() {
+        reviewCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ReviewActivity.class);
                 intent.putExtra("postId", postId);
                 startActivity(intent);
+            }
+        });
+
+        chatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //helps
             }
         });
 

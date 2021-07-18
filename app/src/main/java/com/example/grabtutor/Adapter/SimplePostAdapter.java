@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -104,30 +105,7 @@ public class SimplePostAdapter extends RecyclerView.Adapter<SimplePostAdapter.Vi
         });
 
 
-        /*holder.imageProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE)
-                        .edit().putString("profileId", post.getPublisher()).apply();
-
-                ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new ProfileFragment()).commit();
-            }
-        });*/
-
-        /*holder.username.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE)
-                        .edit().putString("profileId", post.getPublisher()).apply();
-
-                ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new ProfileFragment()).commit();
-            }
-        });*/
-
-
-        holder.postImage.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postid", post.getPostid()).apply();
@@ -148,6 +126,8 @@ public class SimplePostAdapter extends RecyclerView.Adapter<SimplePostAdapter.Vi
 
         public ImageView imageProfile, postImage;
 
+        public CardView cardView;
+
         public TextView username, author;
         TextView title, description, rating, numOfRating, price;
 
@@ -160,6 +140,7 @@ public class SimplePostAdapter extends RecyclerView.Adapter<SimplePostAdapter.Vi
             title = itemView.findViewById(R.id.title);
             price = itemView.findViewById(R.id.price);
             rating = itemView.findViewById(R.id.rating);
+            cardView = itemView.findViewById(R.id.card);
             numOfRating = itemView.findViewById(R.id.numOfRating);
             //description = itemView.findViewById(R.id.description);
 

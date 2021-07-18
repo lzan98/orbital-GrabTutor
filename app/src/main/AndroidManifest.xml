@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GrabTutor">
-        <activity android:name=".Activity.RedeemRewardsActivity"></activity>
+        <activity android:name=".Activity.RedeemRewardsActivity" />
         <activity android:name=".Activity.AddRewardsAdmin" />
         <activity android:name=".Activity.RewardsHistoryActivity" />
         <activity android:name=".Activity.RewardsRedemptionActivity" />
@@ -25,7 +25,9 @@
         <activity android:name=".Activity.BankPaymentActivity" />
         <activity android:name=".Activity.PaymentMethodActivity" />
         <activity android:name=".Activity.LeaveReviewActivity" />
-        <activity android:name=".Activity.ReviewActivity" />
+        <activity
+            android:name=".Activity.ReviewActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
         <activity android:name=".Activity.PostProgrammingActivity" />
         <activity android:name=".Activity.PostMusicActivity" />
         <activity android:name=".Activity.PostFitnessActivity" />
@@ -65,7 +67,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.LoginActivity"
+        <activity
+            android:name=".Activity.LoginActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
