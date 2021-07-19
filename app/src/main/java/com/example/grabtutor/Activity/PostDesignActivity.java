@@ -161,8 +161,6 @@ public class PostDesignActivity extends AppCompatActivity {
             imageUri = result.getUriContent();
             imageAdded.setImageURI(imageUri);
         } else {
-            Toast.makeText(this, "Try again!", Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DesignFragment()).commit();
             finish();
         }
     }

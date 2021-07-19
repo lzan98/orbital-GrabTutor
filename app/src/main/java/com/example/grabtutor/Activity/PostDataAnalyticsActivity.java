@@ -90,7 +90,7 @@ public class PostDataAnalyticsActivity extends AppCompatActivity {
             }
         });
 
-        CropImage.activity().start(PostDataAnalyticsActivity.this);
+        CropImage.activity().setAspectRatio(16,9).setFixAspectRatio(true).start(PostDataAnalyticsActivity.this);
     }
 
     private void upload() {
@@ -161,8 +161,6 @@ public class PostDataAnalyticsActivity extends AppCompatActivity {
             imageUri = result.getUriContent();
             imageAdded.setImageURI(imageUri);
         } else {
-            Toast.makeText(this, "Try again!", Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DataAnalyticsFragment()).commit();
             finish();
         }
     }
