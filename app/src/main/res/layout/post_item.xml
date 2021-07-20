@@ -40,7 +40,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:id="@+id/post_image"
 
                 tools:ignore="MissingConstraints"/>
@@ -75,14 +75,74 @@
             android:textColor="@color/colorAccent"
             android:id="@+id/price"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:id="@+id/no_of_comments"
-            android:textColor="@color/colorAccent"/>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/reviewCard"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:cardElevation="8dp"
+            android:layout_below="@+id/recycler_view">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/reviewText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Reviews"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
+
+                    <ImageButton
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/reviewStar"
+                        android:background="@drawable/ic_reviewstar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/reviewText"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rating"
+                        android:layout_centerVertical="true"
+                        android:text="5.0"
+                        android:textColor="@color/black"
+                        android:layout_toRightOf="@id/reviewStar"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="3dp"
+                        android:id="@+id/numOfRating"
+                        android:text="(3)"
+                        android:layout_toRightOf="@id/rating"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="right"
+                        android:layout_marginLeft="3dp"
+                        android:id="@+id/seeAll"
+                        android:text="See All"
+                        android:layout_alignParentRight="true"
+                        android:layout_toRightOf="@id/numOfRating"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 

@@ -90,7 +90,7 @@ public class PostProgrammingActivity extends AppCompatActivity {
             }
         });
 
-        CropImage.activity().start(PostProgrammingActivity.this);
+        CropImage.activity().setAspectRatio(4,3).setFixAspectRatio(true).start(PostProgrammingActivity.this);
     }
 
     private void upload() {

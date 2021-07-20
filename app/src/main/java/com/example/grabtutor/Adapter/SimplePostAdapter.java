@@ -77,9 +77,6 @@ public class SimplePostAdapter extends RecyclerView.Adapter<SimplePostAdapter.Vi
                     }
                     numberOfReviews = snapshot.getChildrenCount();
                     ratingSum = ratingSum / numberOfReviews;
-                } else {
-                    ratingSum = 0;
-
                 }
                 holder.rating.setText("" + ratingSum);
                 holder.numOfRating.setText("(" + numberOfReviews + ")");

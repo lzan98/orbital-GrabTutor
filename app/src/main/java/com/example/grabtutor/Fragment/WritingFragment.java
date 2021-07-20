@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.grabtutor.Activity.PostWritingActivity;
 import com.example.grabtutor.Adapter.PostAdapter;
+import com.example.grabtutor.Adapter.SimplePostAdapter;
 import com.example.grabtutor.Model.Post;
 import com.example.grabtutor.R;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +30,7 @@ import java.util.List;
 
 public class WritingFragment extends Fragment {
     private RecyclerView recyclerViewPosts;
-    private PostAdapter postAdapter;
+    private SimplePostAdapter simplePostAdapter;
     private List<Post> postList;
     private TextView categoryName;
     ImageView newPost;
@@ -50,8 +51,8 @@ public class WritingFragment extends Fragment {
         recyclerViewPosts.setLayoutManager(linearLayoutManager);
         postList = new ArrayList<>();
         newPost = view.findViewById(R.id.new_post);
-        postAdapter = new PostAdapter(getContext(), postList);
-        recyclerViewPosts.setAdapter(postAdapter);
+        simplePostAdapter = new SimplePostAdapter(getContext(), postList);
+        recyclerViewPosts.setAdapter(simplePostAdapter);
 
         followingList = new ArrayList<>();
 
@@ -79,7 +80,7 @@ public class WritingFragment extends Fragment {
                         postList.add(post);
                     }
                 }
-                postAdapter.notifyDataSetChanged();
+                simplePostAdapter.notifyDataSetChanged();
             }
 
             @Override
