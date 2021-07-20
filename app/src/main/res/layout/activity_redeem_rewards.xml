@@ -59,8 +59,8 @@
             android:textColor="#000"
             android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/redeem_rewards_picture"
+            app:layout_constraintStart_toStartOf="@+id/redeem_rewards_picture"
             app:layout_constraintTop_toBottomOf="@+id/redeem_rewards_picture"
             app:layout_constraintVertical_bias="0.169" />
 
@@ -73,9 +73,9 @@
             android:textColor="#000"
             android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/redeem_rewards_title"
             app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/redeem_rewards_title"
             app:layout_constraintTop_toBottomOf="@+id/redeem_rewards_title"
             app:layout_constraintVertical_bias="0.048" />
 
@@ -118,11 +118,11 @@
             android:text="Redeem"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.489"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.901" />
+            app:layout_constraintEnd_toEndOf="@+id/redeem_rewards_points_available"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/textView7"
+            app:layout_constraintVertical_bias="0.683" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

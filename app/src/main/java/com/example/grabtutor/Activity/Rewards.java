@@ -49,7 +49,7 @@ public class Rewards extends AppCompatActivity implements AdapterView.OnItemClic
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     Integer points = snapshot.child("points").getValue(Integer.class);
-                    balance.setText(points.toString() +" Points");
+                    balance.setText(points.toString());
                 }
             }
 
