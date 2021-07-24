@@ -14,15 +14,17 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height= "?actionBarSize">
+            android:layout_height= "65dp">
 
-            <ImageView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_back"
-                android:padding="15dp"
-                android:id="@+id/backBtn"
-                android:layout_centerVertical="true"/>
+                android:text="Categories"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:fontFamily="@font/brandon_grotesque_black"
+                android:textColor="@color/colorAccent"
+                android:textAllCaps="true"/>
 
             <ImageView
                 android:id="@+id/action_search"
@@ -35,19 +37,11 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Categories"
-            android:textSize="30sp"
-            android:padding="10dp"
-            android:fontFamily="@font/brandon_grotesque_black"
-            android:textColor="@color/colorAccent"
-            android:textAllCaps="true"/>
 
         <RelativeLayout
             android:layout_width="350dp"
             android:layout_height="150dp"
+            android:layout_margin="20dp"
             android:layout_gravity="center"
             android:id="@+id/programming"
             android:background="@drawable/programming_background"

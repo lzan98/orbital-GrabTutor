@@ -23,36 +23,38 @@
 
     <Button
         android:layout_marginTop="20dp"
-        android:layout_width="160dp"
+        android:layout_marginLeft="45dp"
+        android:layout_width="140dp"
         android:layout_height="70dp"
-        android:layout_marginLeft="40dp"
         android:id="@+id/buyButton"
-        android:text="BUY"
-        android:textSize="30sp"
+        android:text="Buy"
+        android:textSize="20sp"
         android:layout_gravity="center"
+        android:layout_alignParentLeft="true"
         android:layout_below="@id/recycler_view"/>
 
     <Button
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="40dp"
-        android:layout_width="160dp"
+        android:layout_marginLeft="45dp"
+        android:layout_width="140dp"
         android:layout_height="70dp"
         android:id="@+id/removeButton"
-        android:text="Remove "
+        android:text="Remove"
         android:textSize="20sp"
         android:layout_gravity="center"
+        android:layout_alignParentLeft="true"
         android:layout_below="@id/recycler_view"/>
 
     <Button
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="160dp"
-        android:layout_height="70dp"
         android:id="@+id/chatButton"
-        android:text="Chat"
-        android:textSize="20sp"
-        android:layout_gravity="center"
+        android:layout_marginRight="45dp"
+        android:layout_width="140dp"
+        android:layout_height="70dp"
         android:layout_below="@id/recycler_view"
-        android:layout_toRightOf="@id/buyButton"/>
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Chat"
+        android:textSize="20sp" />
 
 </RelativeLayout>

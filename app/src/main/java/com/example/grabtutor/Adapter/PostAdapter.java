@@ -68,8 +68,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             Picasso.get().load(post.getImageurl()).into(holder.postImage);
             holder.description.setText(post.getDescription());
             holder.title.setText(post.getTitle());
-            NumberFormat format = NumberFormat.getCurrencyInstance();
-            holder.price.setText(post.getPrice());
+            holder.price.setText("Price: $" + post.getPrice());
 
             FirebaseDatabase.getInstance().getReference().child("Users").child(post.getPublisher()).addValueEventListener(new ValueEventListener() {
                 @Override

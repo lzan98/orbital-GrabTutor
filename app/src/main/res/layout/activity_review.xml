@@ -38,13 +38,14 @@
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:theme="@style/RatingBar"
             style="@style/Widget.AppCompat.RatingBar.Small"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ratingsTv"
             android:text="4.3"
-            android:textSize="12sp"/>
+            android:textSize="14sp"/>
     </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

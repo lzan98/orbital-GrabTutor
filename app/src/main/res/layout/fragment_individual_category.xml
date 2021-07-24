@@ -6,43 +6,37 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         android:id="@+id/bar"
         android:background="?android:attr/windowBackground">
 
-        <androidx.appcompat.widget.Toolbar
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/toolbar"
-            android:background="@color/white">
+            android:layout_height= "65dp">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/categoryName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/programming"
-                    android:layout_centerVertical="true"
-                    android:textSize="30dp"
-                    android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/categoryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Programming"
+                android:padding="10dp"
+                android:fontFamily="@font/brandon_grotesque_black"
+                android:textSize="30sp"
+                android:textColor="@color/black"
+                android:textAllCaps="true"/>
 
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_add"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:background="@color/banner_background"
-                    android:id="@+id/new_post"/>
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_add"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="5dp"
+                android:background="@color/banner_background"
+                android:id="@+id/new_post"/>
 
-            </RelativeLayout>
-
-        </androidx.appcompat.widget.Toolbar>
+        </RelativeLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 

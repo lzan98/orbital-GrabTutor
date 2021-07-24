@@ -139,6 +139,7 @@ public class LeaveReviewActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(LeaveReviewActivity.this, "Review published successfully...", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
