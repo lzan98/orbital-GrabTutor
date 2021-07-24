@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.grabtutor.Activity.LoginActivity;
 import com.example.grabtutor.Activity.MainActivity;
+import com.example.grabtutor.Activity.MessageActivity;
 import com.example.grabtutor.Activity.PostFitnessActivity;
 import com.example.grabtutor.Activity.PostMusicActivity;
 import com.example.grabtutor.Activity.ReviewActivity;
@@ -107,7 +108,6 @@ public class PostDetailFragment extends Fragment {
             }
         });
 
-
         removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,7 +150,20 @@ public class PostDetailFragment extends Fragment {
         chatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //helps
+                FirebaseDatabase.getInstance().getReference().child("Posts").child(postId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                        String posterUID = snapshot.child("publisher").getValue(String.class);
+                        Intent intent = new Intent(getActivity(), MessageActivity.class);
+                        intent.putExtra("userid", posterUID);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
