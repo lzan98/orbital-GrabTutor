@@ -90,7 +90,7 @@ public class PostFitnessActivity extends AppCompatActivity {
             }
         });
 
-        CropImage.activity().start(PostFitnessActivity.this);
+        CropImage.activity().setAspectRatio(4,3).setFixAspectRatio(true).start(PostFitnessActivity.this);
     }
 
     private void upload() {
@@ -127,6 +127,7 @@ public class PostFitnessActivity extends AppCompatActivity {
                     map.put("description" , description.getText().toString());
                     map.put("title" , title.getText().toString());
                     map.put("categoryName", "Fitness");
+                    map.put("price", price.getText().toString());
                     map.put("publisher" , FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                     ref.child(postId).setValue(map);

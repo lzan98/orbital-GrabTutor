@@ -13,7 +13,7 @@ import com.example.grabtutor.R;
 
 
 public class CategoryFragment extends Fragment implements View.OnClickListener {
-    private ImageView backBtn, searchBtn;
+    private ImageView searchBtn;
     private RelativeLayout programming, fitness, writing, music, design, dataAnalytics;
 
     @Override
@@ -21,7 +21,6 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_category, container, false);
-        backBtn = view.findViewById(R.id.backBtn);
         searchBtn = view.findViewById(R.id.action_search);
         programming = view.findViewById(R.id.programming);
         fitness = view.findViewById(R.id.fitness);
@@ -29,13 +28,6 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
         music = view.findViewById(R.id.music);
         design = view.findViewById(R.id.design);
         dataAnalytics = view.findViewById(R.id.dataAnalytics);
-
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-            }
-        });
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override

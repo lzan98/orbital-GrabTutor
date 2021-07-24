@@ -13,9 +13,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.grabtutor.Activity.ReviewActivity;
 import com.example.grabtutor.Fragment.PostDetailFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,6 +42,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
 
     private Context mContext;
     private List<Post> mPosts;
+    private String postId;
 
     private FirebaseUser firebaseUser;
 
@@ -60,12 +63,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
     public void onBindViewHolder(@NonNull final Viewholder holder, int position) {
 
         final Post post = mPosts.get(position);
+        postId = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).getString("postid", "none");
         if (post != null) {
             Picasso.get().load(post.getImageurl()).into(holder.postImage);
             holder.description.setText(post.getDescription());
             holder.title.setText(post.getTitle());
-            NumberFormat format = NumberFormat.getCurrencyInstance();
-            holder.price.setText(post.getPrice());
+            holder.price.setText("Price: $" + post.getPrice());
 
             FirebaseDatabase.getInstance().getReference().child("Users").child(post.getPublisher()).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -79,6 +82,34 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                 }
             });
+
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
+            ref.child(postId).child("Ratings").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    float ratingSum = 0;
+                    long numberOfReviews = 0;
+                    if (snapshot.exists()) {
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+                            float rating = Float.parseFloat("" + ds.child("ratings").getValue());
+                            ratingSum = ratingSum + rating;
+                        }
+                        numberOfReviews = snapshot.getChildrenCount();
+                        ratingSum = ratingSum / numberOfReviews;
+                    } else {
+                        ratingSum = 0;
+                    }
+
+                    numberOfReviews = snapshot.getChildrenCount();
+                    holder.rating.setText("" + ratingSum);
+                    holder.numOfRating.setText("(" + numberOfReviews + ")");
+                }
+
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                }
+            });
+
 
 
         /*holder.imageProfile.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +144,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                             .replace(R.id.fragment_container, new PostDetailFragment()).commit();
                 }
             });
+
+
+            holder.reviewCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, ReviewActivity.class);
+                    intent.putExtra("postId", postId);
+                    mContext.startActivity(intent);
+                }
+            });
         }
 
 
@@ -135,7 +176,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         public TextView username;
         public TextView noOfLikes;
         public TextView author;
-        public TextView noOfComments;
+        private TextView rating, numOfRating;
+        private CardView reviewCard;
         public RatingBar ratingBar;
         TextView title;
         TextView description;
@@ -144,12 +186,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         public Viewholder(@NonNull View itemView) {
             super(itemView);
 
+            reviewCard = itemView.findViewById(R.id.reviewCard);
+            rating = itemView.findViewById(R.id.rating);
+            numOfRating = itemView.findViewById(R.id.numOfRating);
             imageProfile = itemView.findViewById(R.id.image_profile);
             postImage = itemView.findViewById(R.id.post_image);
             username = itemView.findViewById(R.id.username);
             title = itemView.findViewById(R.id.title);
             price = itemView.findViewById(R.id.price);
-            noOfComments = itemView.findViewById(R.id.no_of_comments);
             description = itemView.findViewById(R.id.description);
             ratingBar = itemView.findViewById(R.id.ratingBar);
 

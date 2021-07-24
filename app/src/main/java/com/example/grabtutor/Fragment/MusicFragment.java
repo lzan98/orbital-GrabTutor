@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.grabtutor.Activity.PostMusicActivity;
 import com.example.grabtutor.Adapter.PostAdapter;
+import com.example.grabtutor.Adapter.SimplePostAdapter;
 import com.example.grabtutor.Model.Post;
 import com.example.grabtutor.R;
 import com.google.firebase.database.DataSnapshot;
@@ -29,11 +30,10 @@ import java.util.List;
 
 public class MusicFragment extends Fragment {
     private RecyclerView recyclerViewPosts;
-    private PostAdapter postAdapter;
+    private SimplePostAdapter simplePostAdapter;
     private List<Post> postList;
     private TextView categoryName;
     ImageView newPost;
-    private List<String> followingList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,10 +50,8 @@ public class MusicFragment extends Fragment {
         recyclerViewPosts.setLayoutManager(linearLayoutManager);
         postList = new ArrayList<>();
         newPost = view.findViewById(R.id.new_post);
-        postAdapter = new PostAdapter(getContext(), postList);
-        recyclerViewPosts.setAdapter(postAdapter);
-
-        followingList = new ArrayList<>();
+        simplePostAdapter = new SimplePostAdapter(getContext(), postList);
+        recyclerViewPosts.setAdapter(simplePostAdapter);
 
         readPosts();
 
@@ -79,7 +77,7 @@ public class MusicFragment extends Fragment {
                         postList.add(post);
                     }
                 }
-                postAdapter.notifyDataSetChanged();
+                simplePostAdapter.notifyDataSetChanged();
             }
 
             @Override

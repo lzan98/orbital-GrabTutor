@@ -67,21 +67,24 @@ public class ReviewActivity extends AppCompatActivity {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 reviewArrayList.clear();
                 ratingSum = 0;
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    float rating = Float.parseFloat("" + ds.child("ratings").getValue());
-                    ratingSum = ratingSum + rating;
+                long numberOfReviews = 0;
+                if (snapshot.exists()) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        float rating = Float.parseFloat("" + ds.child("ratings").getValue());
+                        ratingSum = ratingSum + rating;
 
-                    Review review = ds.getValue(Review.class);
-                    reviewArrayList.add(review);
+                        Review review = ds.getValue(Review.class);
+                        reviewArrayList.add(review);
+                    }
+
+                    reviewAdapter = new ReviewAdapter(ReviewActivity.this, reviewArrayList);
+                    reviewsRv.setAdapter(reviewAdapter);
+
+                    numberOfReviews = snapshot.getChildrenCount();
+                    ratingSum = ratingSum / numberOfReviews;
                 }
-
-                reviewAdapter = new ReviewAdapter(ReviewActivity.this, reviewArrayList);
-                reviewsRv.setAdapter(reviewAdapter);
-
-                long numberOfReviews = snapshot.getChildrenCount();
-                float avgRating = ratingSum/numberOfReviews;
-                ratingsTv.setText(String.format("%.1f", avgRating) + "(" + numberOfReviews + ")");
-                ratingBar.setRating(avgRating);
+                ratingsTv.setText(String.format("%.1f", ratingSum) + "(" + numberOfReviews + ")");
+                ratingBar.setRating(ratingSum);
             }
 
             @Override

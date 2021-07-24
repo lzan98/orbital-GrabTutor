@@ -55,9 +55,7 @@ public class PostDetailFragment extends Fragment {
     private PostAdapter postAdapter;
     private List<Post> postList;
     private Button buyButton, removeButton, chatButton;
-    private TextView rating, numOfRating;
     private FirebaseAuth firebaseAuth;
-    private CardView reviewCard;
 
 
     @Override
@@ -75,15 +73,10 @@ public class PostDetailFragment extends Fragment {
         recyclerView.setAdapter(postAdapter);
         buyButton = view.findViewById(R.id.buyButton);
         removeButton = view.findViewById(R.id.removeButton);
-        rating = view.findViewById(R.id.rating);
-        reviewCard = view.findViewById(R.id.reviewCard);
-        numOfRating = view.findViewById(R.id.numOfRating);
         chatButton = view.findViewById(R.id.chatButton);
         firebaseAuth = FirebaseAuth.getInstance();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
-        
-        loadReviews();
 
         FirebaseDatabase.getInstance().getReference().child("Posts").child(postId).addValueEventListener(new ValueEventListener() {
             @Override
@@ -138,14 +131,6 @@ public class PostDetailFragment extends Fragment {
             }
         });
 
-        reviewCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ReviewActivity.class);
-                intent.putExtra("postId", postId);
-                startActivity(intent);
-            }
-        });
 
         chatButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,39 +153,6 @@ public class PostDetailFragment extends Fragment {
         });
 
         return view;
-    }
-
-    private void loadReviews() {
-
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
-        ref.child(postId).child("Ratings").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                float ratingSum = 0;
-                long numberOfReviews = 0;
-                if (snapshot.exists()) {
-                    for (DataSnapshot ds : snapshot.getChildren()) {
-                        float rating = Float.parseFloat("" + ds.child("ratings").getValue());
-                        ratingSum = ratingSum + rating;
-                    }
-                    numberOfReviews = snapshot.getChildrenCount();
-                    ratingSum = ratingSum / numberOfReviews;
-                } else {
-                    ratingSum = 0;
-
-                }
-
-                numberOfReviews = snapshot.getChildrenCount();
-                rating.setText("" + ratingSum);
-                numOfRating.setText("(" + numberOfReviews + ")");
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });
     }
 
 }

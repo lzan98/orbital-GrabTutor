@@ -1,16 +1,21 @@
 package com.example.grabtutor.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.grabtutor.Model.OrderHistory;
+import com.example.grabtutor.Model.PaymentHistory;
 import com.example.grabtutor.Model.Post;
 import com.example.grabtutor.Model.User;
 import com.example.grabtutor.R;
@@ -24,15 +29,16 @@ import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Calendar;
+
 public class ReviewOrderActivity extends AppCompatActivity {
 
     private String postId, userId;
     ImageView image;
     TextView title, desc, price, creditBalance;
-    Button leaveReview;
+    Button leaveReview, paymentButton;
     private Context mContext;
     private Post mPost;
-    private Button paymentButton;
     private FirebaseUser firebaseUser;
 
     @Override
@@ -48,10 +54,12 @@ public class ReviewOrderActivity extends AppCompatActivity {
         creditBalance = findViewById(R.id.creditBalance);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         leaveReview = findViewById(R.id.leaveReview);
+        paymentButton = findViewById(R.id.paymentButton);
 
         FirebaseDatabase.getInstance().getReference().child("Posts").child(postId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                mPost = snapshot.getValue(Post.class);
                 Post post = snapshot.getValue(Post.class);
                 Picasso.get().load(post.getImageurl()).into(image);
                 title.setText(post.getTitle());
@@ -65,12 +73,11 @@ public class ReviewOrderActivity extends AppCompatActivity {
             }
         });
 
-        FirebaseDatabase.getInstance().getReference().child("Users").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                int test = user.getBalance();
-                creditBalance.setText(String.valueOf(test));
+                int balance = Integer.parseInt("" + snapshot.child("balance").getValue());
+                creditBalance.setText(String.valueOf(String.valueOf(balance)));
             }
 
             @Override
@@ -86,5 +93,46 @@ public class ReviewOrderActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        paymentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                        new AlertDialog.Builder(ReviewOrderActivity.this)
+                                    .setTitle("Payment")
+                                    .setMessage("Are you sure?")
+                                    .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                                    int balance = Integer.parseInt("" + snapshot.child("balance").getValue());
+                                                    int postPrice = Integer.parseInt(mPost.getPrice());
+                                                    if (balance < postPrice) {
+                                                        Toast.makeText(ReviewOrderActivity.this, "Insufficient Balance", Toast.LENGTH_LONG).show();
+                                                        finish();
+                                                    }
+                                                    Integer newBalance = balance - postPrice;
+                                                    FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("balance").setValue(newBalance);
+                                                    String currentTime = Calendar.getInstance().getTime().toString();
+                                                    String uNumber = Long.toString(Calendar.getInstance().getTimeInMillis());
+                                                    String refNumber = firebaseUser.getUid() + uNumber;
+                                                    OrderHistory orderHistory = new OrderHistory(refNumber
+                                                            , postPrice, "In Progress", postId, "" + firebaseUser.getUid(), currentTime);
+                                                    finish();
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                                                }
+                                            });}}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // do nothing
+                                }
+                            }).setIcon(android.R.drawable.ic_dialog_alert)
+                                    .show();
+
+                        }
+                });
     }
 }

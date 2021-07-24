@@ -90,7 +90,7 @@ public class PostDataAnalyticsActivity extends AppCompatActivity {
             }
         });
 
-        CropImage.activity().setAspectRatio(16,9).setFixAspectRatio(true).start(PostDataAnalyticsActivity.this);
+        CropImage.activity().setAspectRatio(4,3).setFixAspectRatio(true).start(PostDataAnalyticsActivity.this);
     }
 
     private void upload() {
@@ -127,6 +127,7 @@ public class PostDataAnalyticsActivity extends AppCompatActivity {
                     map.put("description" , description.getText().toString());
                     map.put("title" , title.getText().toString());
                     map.put("categoryName", "Database");
+                    map.put("price", price.getText().toString());
                     map.put("publisher" , FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                     ref.child(postId).setValue(map);

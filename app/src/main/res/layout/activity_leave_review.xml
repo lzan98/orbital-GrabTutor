@@ -34,6 +34,7 @@
         android:scaleX="0.75"
         android:scaleY="0.75"
         android:stepSize="1"
+        android:theme="@style/RatingBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView3"

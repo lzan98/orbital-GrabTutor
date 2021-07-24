@@ -113,7 +113,7 @@ public class PostMusicActivity extends AppCompatActivity {
             }
         });
 
-        CropImage.activity().start(PostMusicActivity.this);
+        CropImage.activity().setAspectRatio(4,3).setFixAspectRatio(true).start(PostMusicActivity.this);
     }
 
     private void upload() {
@@ -150,6 +150,7 @@ public class PostMusicActivity extends AppCompatActivity {
                     map.put("description" , description.getText().toString());
                     map.put("categoryName", "Music");
                     map.put("title" , title.getText().toString());
+                    map.put("price", price.getText().toString());
                     map.put("publisher" , FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                     ref.child(postId).setValue(map);
