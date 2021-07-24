@@ -25,6 +25,13 @@ public class Credentials extends AppCompatActivity implements AdapterView.OnItem
         listView = findViewById(R.id.ListView_credentials);
         back = findViewById(R.id.button_credentials_back);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Credentials.this, MainActivity.class));
+            }
+        });
+
         String[] management =  {"Upload Credentials", "History"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(Credentials.this, android.R.layout.simple_list_item_1, management);

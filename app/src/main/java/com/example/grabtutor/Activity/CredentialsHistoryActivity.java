@@ -52,7 +52,7 @@ public class CredentialsHistoryActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CredentialsHistoryActivity.this, MainActivity.class));
+                startActivity(new Intent(CredentialsHistoryActivity.this, Credentials.class));
             }
         });
 

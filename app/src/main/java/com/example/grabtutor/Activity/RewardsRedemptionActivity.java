@@ -57,7 +57,7 @@ public class RewardsRedemptionActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RewardsRedemptionActivity.this, MainActivity.class));
+                startActivity(new Intent(RewardsRedemptionActivity.this, Rewards.class));
             }
         });
 

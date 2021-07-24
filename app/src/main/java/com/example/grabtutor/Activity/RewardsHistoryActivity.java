@@ -57,7 +57,7 @@ public class RewardsHistoryActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RewardsHistoryActivity.this, MainActivity.class));
+                startActivity(new Intent(RewardsHistoryActivity.this, Rewards.class));
             }
         });
 
