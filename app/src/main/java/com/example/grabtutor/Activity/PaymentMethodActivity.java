@@ -11,7 +11,7 @@ import com.example.grabtutor.R;
 
 public class PaymentMethodActivity extends AppCompatActivity {
 
-    Button bank, crypto, free_topup;
+    Button bank, crypto, free_topup, back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,14 @@ public class PaymentMethodActivity extends AppCompatActivity {
         bank = findViewById(R.id.button_paymentmethod_bank);
         crypto = findViewById(R.id.button_paymentmethod_crypto);
         free_topup = findViewById(R.id.button_paymentmethod_free);
+        back = findViewById(R.id.button_paymentmethod_back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PaymentMethodActivity.this, Payment.class));
+            }
+        });
 
         bank.setOnClickListener(new View.OnClickListener() {
             @Override

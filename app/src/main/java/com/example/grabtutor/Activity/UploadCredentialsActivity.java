@@ -39,7 +39,7 @@ import java.util.Calendar;
 public class UploadCredentialsActivity extends AppCompatActivity {
 
     private EditText domain, experience, description;
-    private Button submit, upload;
+    private Button submit, upload, back;
     private DatabaseReference firebaseDatabase;
     private FirebaseUser firebaseUser;
     private StorageReference storageReference;
@@ -55,6 +55,7 @@ public class UploadCredentialsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_credentials);
 
+        back = findViewById(R.id.button_upload_credentials_back);
         domain = findViewById(R.id.editText_upload_credentials_domain);
         experience = findViewById(R.id.editText_upload_credentials_experience);
         description = findViewById(R.id.editText_upload_credentials_description);
@@ -64,6 +65,13 @@ public class UploadCredentialsActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
         document = findViewById(R.id.imageView_upload_credentials_picture);
         upload = findViewById(R.id.button_upload_credentials_upload_image);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UploadCredentialsActivity.this, Credentials.class));
+            }
+        });
 
         document.setOnClickListener(new View.OnClickListener() {
             @Override
