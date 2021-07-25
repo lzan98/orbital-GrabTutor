@@ -2,19 +2,21 @@ package com.example.grabtutor.Model;
 
 public class OrderHistory {
 
-    String refNumber, status, userId, date, postId;
+    String refNumber, status, userId, date, postTitle, publisherId, type;
     int postPrice;
 
     public OrderHistory() {
     }
 
-    public OrderHistory(String refNumber, int postPrice, String status, String postId, String userId, String date) {
+    public OrderHistory(String refNumber, int postPrice, String status, String postTitle, String userId, String publisherId, String date, String type) {
         this.refNumber = refNumber;
         this.postPrice = postPrice;
         this.status = status;
         this.userId = userId;
-        this.postId = postId;
+        this.postTitle = postTitle;
+        this.publisherId = publisherId;
         this.date = date;
+        this.type = type;
     }
 
 
@@ -30,11 +32,17 @@ public class OrderHistory {
         return status;
     }
 
-    public String getPostId() {return postId; }
+    public String getPostTitle() {return postTitle; }
 
     public String getUserId() {
         return userId;
     }
+
+    public String getPublisherId() {
+        return publisherId;
+    }
+
+    public String getType() { return type; }
 
     public String getDate() {
         return date;

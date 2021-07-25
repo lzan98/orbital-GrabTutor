@@ -30,7 +30,7 @@
             android:layout_height="150dp"
             android:layout_gravity="center">
             <ImageView
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
                 android:id="@+id/post_image"/>
@@ -39,8 +39,10 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/post_image"
                 android:paddingLeft="10dp"
-                android:textSize="35sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
+                android:layout_centerInParent="true"
+                android:gravity="center"
                 android:id="@+id/title"/>
         </RelativeLayout>
 
@@ -52,30 +54,54 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="30dp"
+                android:paddingLeft="10dp"
+                android:textSize="25sp"
                 android:id="@+id/orderDetails"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/orderDetails"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Price:"
+                android:textStyle="bold"
+                android:layout_below="@+id/orderDetails"
+                android:id="@+id/priceText"/>
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/orderDetails"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/black"
                 android:id="@+id/price"/>
 
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center">
             <TextView
                 android:id="@+id/balancetext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="30dp"
+                android:padding="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:text="Your Credit Balance: "/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="30dp"
+                android:padding="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_alignParentRight="true"
                 android:id="@+id/creditBalance"/>
 
@@ -85,22 +111,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:layout_marginTop="5dp"
             android:layout_gravity="center">
             <Button
-                android:layout_width="380dp"
+                android:layout_width="280dp"
                 android:layout_height="80dp"
                 android:text="Make payment"
                 android:id="@+id/paymentButton"
-                android:textSize="25sp">
+                android:layout_centerInParent="true"
+                android:textSize="22sp">
             </Button>
-            <Button
-                android:layout_width="380dp"
-                android:layout_height="80dp"
-                android:text="Leave Review"
-                android:layout_below="@id/paymentButton"
-                android:id="@+id/leaveReview"
-                android:textSize="25sp">
-            </Button>
+
 
         </RelativeLayout>
 

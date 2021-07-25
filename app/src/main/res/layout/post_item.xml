@@ -73,6 +73,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_marginBottom="5dp"
             android:textColor="@color/colorAccent"
             android:id="@+id/price"/>
@@ -81,7 +82,7 @@
             android:id="@+id/reviewCard"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             app:cardElevation="8dp"
             android:layout_below="@+id/recycler_view">
 
@@ -99,6 +100,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
+                        android:textSize="20sp"
                         android:text="Reviews"
                         android:textStyle="bold"
                         android:textColor="@color/black"/>
@@ -110,6 +112,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:scaleX="1.2"
+                        android:scaleY="1.2"
+                        android:padding="5dp"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@id/reviewText"/>
 
@@ -120,6 +125,8 @@
                         android:id="@+id/rating"
                         android:layout_centerVertical="true"
                         android:text="5.0"
+                        android:layout_marginLeft="4dp"
+                        android:textSize="18sp"
                         android:textColor="@color/black"
                         android:layout_toRightOf="@id/reviewStar"/>
                     <TextView
@@ -129,6 +136,7 @@
                         android:layout_marginLeft="3dp"
                         android:id="@+id/numOfRating"
                         android:text="(3)"
+                        android:textSize="18sp"
                         android:layout_toRightOf="@id/rating"/>
 
                     <TextView
@@ -140,6 +148,7 @@
                         android:layout_marginLeft="3dp"
                         android:id="@+id/seeAll"
                         android:text="See All"
+                        android:textSize="15sp"
                         android:layout_alignParentRight="true"
                         android:layout_toRightOf="@id/numOfRating"/>
                 </RelativeLayout>

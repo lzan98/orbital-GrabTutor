@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.grabtutor.Activity.Credentials;
 import com.example.grabtutor.Activity.LoginActivity;
 import com.example.grabtutor.Activity.MainActivity;
+import com.example.grabtutor.Activity.OrderHistoryActivity;
 import com.example.grabtutor.Activity.Payment;
 import com.example.grabtutor.Activity.Rewards;
 import com.example.grabtutor.Activity.UserProfileActivity;
@@ -121,7 +122,7 @@ public class ProfileFragment extends Fragment implements AdapterView.OnItemClick
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String[] management = {"User Profile", "Credentials", "Payment", "Rewards", "Logout"};
+        String[] management = {"User Profile", "Credentials", "Payment", "Rewards", "Orders", "Logout"};
 
         listView = view.findViewById(R.id.ListView_profile);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, management);
@@ -152,9 +153,13 @@ public class ProfileFragment extends Fragment implements AdapterView.OnItemClick
             Intent intent = new Intent(getActivity(), Rewards.class);
             startActivity(intent);
             finishActivity();
+        } if (position == 4) {
+            Intent intent = new Intent(getActivity(), OrderHistoryActivity.class);
+            startActivity(intent);
+            finishActivity();
         }
         // Logout
-        if (position == 4) {
+        if (position == 5) {
             new AlertDialog.Builder(getActivity())
                     .setCancelable(true)
                     .setMessage("Confirm Logout?")

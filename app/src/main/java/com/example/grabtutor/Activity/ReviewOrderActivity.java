@@ -36,7 +36,7 @@ public class ReviewOrderActivity extends AppCompatActivity {
     private String postId, userId;
     ImageView image;
     TextView title, desc, price, creditBalance;
-    Button leaveReview, paymentButton;
+    Button paymentButton;
     private Context mContext;
     private Post mPost;
     private FirebaseUser firebaseUser;
@@ -53,7 +53,6 @@ public class ReviewOrderActivity extends AppCompatActivity {
         price = findViewById(R.id.price);
         creditBalance = findViewById(R.id.creditBalance);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        leaveReview = findViewById(R.id.leaveReview);
         paymentButton = findViewById(R.id.paymentButton);
 
         FirebaseDatabase.getInstance().getReference().child("Posts").child(postId).addValueEventListener(new ValueEventListener() {
@@ -77,7 +76,7 @@ public class ReviewOrderActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 int balance = Integer.parseInt("" + snapshot.child("balance").getValue());
-                creditBalance.setText(String.valueOf(String.valueOf(balance)));
+                creditBalance.setText("$" + String.valueOf(String.valueOf(balance)));
             }
 
             @Override
@@ -86,13 +85,13 @@ public class ReviewOrderActivity extends AppCompatActivity {
             }
         });
 
-        leaveReview.setOnClickListener(new View.OnClickListener() {
+        /*leaveReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ReviewOrderActivity.this, LeaveReviewActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         paymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,9 +115,14 @@ public class ReviewOrderActivity extends AppCompatActivity {
                                                     String currentTime = Calendar.getInstance().getTime().toString();
                                                     String uNumber = Long.toString(Calendar.getInstance().getTimeInMillis());
                                                     String refNumber = firebaseUser.getUid() + uNumber;
-                                                    OrderHistory orderHistory = new OrderHistory(refNumber
-                                                            , postPrice, "In Progress", postId, "" + firebaseUser.getUid(), currentTime);
-                                                    finish();
+                                                    OrderHistory orderHistory1 = new OrderHistory(refNumber
+                                                            , postPrice, "In Progress", mPost.getTitle(), "" + firebaseUser.getUid(), mPost.getPublisher(), currentTime, "Buyer");
+                                                    FirebaseDatabase.getInstance().getReference("OrderHistory").child(firebaseUser.getUid()).child(refNumber).setValue(orderHistory1);
+                                                    OrderHistory orderHistory2 = new OrderHistory(refNumber
+                                                            , postPrice, "In Progress", mPost.getTitle(), "" + firebaseUser.getUid(), mPost.getPublisher(), currentTime, "Seller");
+                                                    FirebaseDatabase.getInstance().getReference("OrderHistory").child(mPost.getPublisher()).child(refNumber).setValue(orderHistory2);
+                                                    startActivity(new Intent(ReviewOrderActivity.this, OrderHistoryActivity.class));
+
                                                 }
 
                                                 @Override
