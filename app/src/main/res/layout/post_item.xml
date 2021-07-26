@@ -13,13 +13,17 @@
         <LinearLayout
             android:id="@+id/linear"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/image_profile"
+                android:layout_centerVertical="true"
                 android:layout_margin="5dp"/>
 
             <TextView
@@ -28,9 +32,12 @@
                 android:id="@+id/username"
                 android:layout_gravity="center_vertical"
                 android:textSize="16sp"
+                android:layout_toRightOf="@id/image_profile"
                 android:textStyle="bold"
                 android:textColor="@color/black"
+                android:layout_centerVertical="true"
                 android:layout_margin="5dp"/>
+            </RelativeLayout>
 
         </LinearLayout>
 
