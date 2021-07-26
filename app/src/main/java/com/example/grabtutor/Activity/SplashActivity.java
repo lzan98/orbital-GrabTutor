@@ -7,7 +7,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -26,6 +30,7 @@ public class SplashActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private ScreenSlidePagerAdapter pagerAdapter;
     Animation anim;
+    SharedPreferences onBoardingScreen;
 
 
     @Override
@@ -42,6 +47,26 @@ public class SplashActivity extends AppCompatActivity {
 
         anim = AnimationUtils.loadAnimation(this, R.anim.o_b_anim);
         viewPager.setAnimation(anim);
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                onBoardingScreen = getSharedPreferences("onBoardingScreen", MODE_PRIVATE);
+                boolean isFirstTime = onBoardingScreen.getBoolean("firstTime", true);
+
+                if (isFirstTime) {
+                    SharedPreferences.Editor editor = onBoardingScreen.edit();
+                    editor.putBoolean("firstTime", false);
+                    editor.commit();
+                    //go to onboardingscreen
+                }
+                else {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        }, 1000);
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
