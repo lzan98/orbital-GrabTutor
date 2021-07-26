@@ -34,7 +34,7 @@ import java.util.Calendar;
 public class ReviewOrderActivity extends AppCompatActivity {
 
     private String postId, userId;
-    ImageView image;
+    ImageView image, backBtn;
     TextView title, desc, price, creditBalance;
     Button paymentButton;
     private Context mContext;
@@ -54,6 +54,7 @@ public class ReviewOrderActivity extends AppCompatActivity {
         creditBalance = findViewById(R.id.creditBalance);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         paymentButton = findViewById(R.id.paymentButton);
+        backBtn = findViewById(R.id.backBtn);
 
         FirebaseDatabase.getInstance().getReference().child("Posts").child(postId).addValueEventListener(new ValueEventListener() {
             @Override
@@ -85,13 +86,6 @@ public class ReviewOrderActivity extends AppCompatActivity {
             }
         });
 
-        /*leaveReview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ReviewOrderActivity.this, LeaveReviewActivity.class);
-                startActivity(intent);
-            }
-        });*/
 
         paymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +102,7 @@ public class ReviewOrderActivity extends AppCompatActivity {
                                                     int postPrice = Integer.parseInt(mPost.getPrice());
                                                     if (balance < postPrice) {
                                                         Toast.makeText(ReviewOrderActivity.this, "Insufficient Balance", Toast.LENGTH_LONG).show();
-                                                        finish();
+                                                        return;
                                                     }
                                                     Integer newBalance = balance - postPrice;
                                                     FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("balance").setValue(newBalance);
@@ -138,5 +132,12 @@ public class ReviewOrderActivity extends AppCompatActivity {
 
                         }
                 });
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 }

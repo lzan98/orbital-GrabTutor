@@ -101,7 +101,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                     }
 
                     numberOfReviews = snapshot.getChildrenCount();
-                    holder.rating.setText("" + ratingSum);
+                    holder.rating.setText("" + String.format("%.1f", ratingSum));
                     holder.numOfRating.setText("(" + numberOfReviews + ")");
                 }
 

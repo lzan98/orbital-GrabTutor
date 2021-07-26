@@ -29,13 +29,20 @@
         <activity
             android:name=".Activity.ReviewActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
-        <activity android:name=".Activity.PostProgrammingActivity" />
-        <activity android:name=".Activity.PostMusicActivity" />
-        <activity android:name=".Activity.PostFitnessActivity" />
-        <activity android:name=".Activity.PostDataAnalyticsActivity" />
-        <activity android:name=".Activity.OrderHistoryActivity" />
-        <activity android:name=".Activity.PostDesignActivity" />
-        <activity android:name=".Activity.PostWritingActivity" />
+        <activity android:name=".Activity.PostProgrammingActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity android:name=".Activity.PostMusicActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity android:name=".Activity.PostFitnessActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity android:name=".Activity.PostDataAnalyticsActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity android:name=".Activity.OrderHistoryActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity android:name=".Activity.PostDesignActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity android:name=".Activity.PostWritingActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
         <activity
             android:name=".Activity.SignUpActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
