@@ -23,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.grabtutor.Activity.EditPostActivity;
 import com.example.grabtutor.Activity.LoginActivity;
 import com.example.grabtutor.Activity.MainActivity;
 import com.example.grabtutor.Activity.MessageActivity;
@@ -50,11 +51,11 @@ import java.util.List;
 
 public class PostDetailFragment extends Fragment {
 
-    private String postId;
+    private String postId, categoryName, imageUrl;
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
     private List<Post> postList;
-    private Button buyButton, removeButton, chatButton;
+    private Button buyButton, removeButton, chatButton, editButton;
     private FirebaseAuth firebaseAuth;
 
 
@@ -74,6 +75,7 @@ public class PostDetailFragment extends Fragment {
         buyButton = view.findViewById(R.id.buyButton);
         removeButton = view.findViewById(R.id.removeButton);
         chatButton = view.findViewById(R.id.chatButton);
+        editButton = view.findViewById(R.id.editButton);
         firebaseAuth = FirebaseAuth.getInstance();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
@@ -89,15 +91,39 @@ public class PostDetailFragment extends Fragment {
                 if (firebaseAuth.getUid().equals(dataSnapshot.child("publisher").getValue())) {
 
                     buyButton.setVisibility(View.INVISIBLE);
+                    chatButton.setVisibility(View.INVISIBLE);
                 }
                 else {
                     removeButton.setVisibility(View.INVISIBLE);
+                    editButton.setVisibility(View.INVISIBLE);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase.getInstance().getReference("Posts").child(postId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                        categoryName = (String) snapshot.child("categoryName").getValue();
+                        imageUrl = (String) snapshot.child("imageurl").getValue();
+                        Intent intent = new Intent(getActivity(), EditPostActivity.class).putExtra("postId", postId);
+                        intent.putExtra("categoryName", categoryName);
+                        intent.putExtra("imageUrl", imageUrl);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
