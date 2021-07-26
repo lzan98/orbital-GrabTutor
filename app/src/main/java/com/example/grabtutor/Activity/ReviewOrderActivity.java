@@ -115,6 +115,9 @@ public class ReviewOrderActivity extends AppCompatActivity {
                                                     OrderHistory orderHistory2 = new OrderHistory(refNumber
                                                             , postPrice, "In Progress", mPost.getTitle(), "" + firebaseUser.getUid(), mPost.getPublisher(), currentTime, "Seller");
                                                     FirebaseDatabase.getInstance().getReference("OrderHistory").child(mPost.getPublisher()).child(refNumber).setValue(orderHistory2);
+                                                    int pointsBalance = snapshot.child("points").getValue(Integer.class);
+                                                    FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("points").setValue(pointsBalance + postPrice);
+                                                    Toast.makeText(ReviewOrderActivity.this, "Payment success." + String.valueOf(postPrice) + " Reward points have been credited to your account.", Toast.LENGTH_SHORT).show();
                                                     startActivity(new Intent(ReviewOrderActivity.this, OrderHistoryActivity.class));
 
                                                 }
