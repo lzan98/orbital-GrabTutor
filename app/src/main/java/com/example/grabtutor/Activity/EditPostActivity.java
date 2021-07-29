@@ -129,7 +129,7 @@ public class EditPostActivity extends AppCompatActivity {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts").child(postId);
 
-        ref.child("descrption").setValue(newDesc);
+        ref.child("description").setValue(newDesc);
         ref.child("title").setValue(newTitle);
         ref.child("price").setValue(newPrice);
 
