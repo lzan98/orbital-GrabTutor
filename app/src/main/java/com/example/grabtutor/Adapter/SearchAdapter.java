@@ -16,6 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.grabtutor.Fragment.PostDetailFragment;
 import com.example.grabtutor.Model.Post;
 import com.example.grabtutor.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -26,9 +31,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     private ArrayList<Post> list = new ArrayList<>();
     private Context mContext;
 
-    public SearchAdapter(Context mContext, ArrayList<Post> locations) {
+    public SearchAdapter(Context mContext, ArrayList<Post> mPosts) {
         this.mContext = mContext;
-        this.list = locations;
+        this.list = mPosts;
     }
     @NonNull
     @Override
@@ -40,9 +45,36 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public void onBindViewHolder(@NonNull SearchAdapter.SearchViewHolder holder, int position) {
-        holder.title.setText(list.get(position).getTitle());
-        Picasso.get().load(list.get(position).getImageurl()).into(holder.postImage);
-        holder.price.setText("$ " + list.get(position).getPrice());
+        final Post post = list.get(position);
+        String postId = post.getPostid();
+
+        holder.title.setText(post.getTitle());
+        Picasso.get().load(post.getImageurl()).into(holder.postImage);
+        holder.price.setText("$ " + post.getPrice());
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
+
+        ref.child(postId).child("Ratings").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                float ratingSum = 0;
+                long numberOfReviews = 0;
+                if (snapshot.exists()) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        float rating = Float.parseFloat("" + ds.child("ratings").getValue());
+                        ratingSum = ratingSum + rating;
+                    }
+                    numberOfReviews = snapshot.getChildrenCount();
+                    ratingSum = ratingSum / numberOfReviews;
+                }
+                holder.rating.setText("" + ratingSum);
+                holder.numOfRating.setText("(" + numberOfReviews + ")");
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+            }
+        });
 
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
@@ -72,45 +104,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     }
 
 
-
-//    @Override
-//    public Filter getFilter() {
-//        return filter;
-//    }
-//
-//    Filter filter = new Filter() {
-//        private Object Collection;
-//
-//        @Override
-//        protected FilterResults performFiltering(CharSequence constraint) {
-//            List<Locations> filteredList = new ArrayList<>();
-//
-//            if(constraint.toString().isEmpty()){
-//                filteredList.addAll(locationsAll);
-//            }else{
-//                for (Locations loc: locationsAll){
-//                    if(loc.getName().toLowerCase().contains(constraint.toString().toLowerCase())){
-//                        filteredList.add(loc);
-//                    }
-//                }
-//            }
-//
-//            FilterResults filterRes = new FilterResults();
-//            filterRes.values = filteredList;
-//            return filterRes;
-//        }
-//
-//        @Override
-//        protected void publishResults(CharSequence constraint, FilterResults results) {
-//            locations.clear();
-//            locations.addAll((Collection<? extends Locations>)results.values);
-//            notifyDataSetChanged();
-//        }
-//    };
-
     public class SearchViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView title, price;
+        private TextView title, price, rating, numOfRating;
         private ImageView postImage;
         private CardView parent;
         SearchViewHolder(@NonNull View itemView) {
@@ -119,6 +115,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             title = itemView.findViewById(R.id.title); // need to call using itemView because we are not inside an Activity
             parent = itemView.findViewById(R.id.card);
             price = itemView.findViewById(R.id.price);
+            numOfRating = itemView.findViewById(R.id.numOfRating);
+            rating = itemView.findViewById(R.id.rating);
 
 
 

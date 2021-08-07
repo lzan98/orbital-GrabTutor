@@ -125,8 +125,7 @@ public class SimplePostAdapter extends RecyclerView.Adapter<SimplePostAdapter.Vi
 
         public CardView cardView;
 
-        public TextView username, author;
-        TextView title, description, rating, numOfRating, price;
+        public TextView username, title, description, rating, numOfRating, price;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
