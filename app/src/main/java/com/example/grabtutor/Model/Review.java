@@ -1,16 +1,17 @@
 package com.example.grabtutor.Model;
 
 public class Review {
-    private String userId, ratings, review, timestamp;
+    private String userId, ratings, review, timestamp, postId;
 
 
     public Review(){}
 
-    public Review(String userId, String ratings, String review, String timestamp) {
+    public Review(String userId, String ratings, String review, String timestamp, String postId) {
         this.userId = userId;
         this.ratings = ratings;
         this.review = review;
         this.timestamp = timestamp;
+        this.postId = postId;
     }
 
     public String getUserId() {
@@ -39,6 +40,10 @@ public class Review {
 
     public String getTimestamp() {
         return timestamp;
+    }
+
+    public String getpostId() {
+        return postId;
     }
 
     public void setTimestamp(String timestamp) {

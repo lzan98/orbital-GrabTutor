@@ -52,7 +52,6 @@ public class ReviewActivity extends AppCompatActivity {
         postId = getIntent().getStringExtra("postId");
 
         firebaseAuth = FirebaseAuth.getInstance();
-        loadPostDetails();
         loadReviews();
 
     }
@@ -85,21 +84,6 @@ public class ReviewActivity extends AppCompatActivity {
                 }
                 ratingsTv.setText(String.format("%.1f", ratingSum) + "(" + numberOfReviews + ")");
                 ratingBar.setRating(ratingSum);
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    private void loadPostDetails() {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
-        ref.child(postId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                String publisher = "" + snapshot.child("publisher").getValue();
             }
 
             @Override

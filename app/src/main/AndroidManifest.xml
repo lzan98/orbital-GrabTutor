@@ -26,6 +26,7 @@
         <activity android:name=".Activity.BankPaymentActivity" />
         <activity android:name=".Activity.PaymentMethodActivity" />
         <activity android:name=".Activity.LeaveReviewActivity" />
+        <activity android:name=".Activity.EditReviewActivity" />
         <activity android:name=".Activity.EditPostActivity" />
         <activity
             android:name=".Activity.ReviewActivity"
