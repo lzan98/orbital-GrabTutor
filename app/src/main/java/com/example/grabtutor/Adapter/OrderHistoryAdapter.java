@@ -83,6 +83,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
                 intent.putExtra("refNumber", orderHistory.getRefNumber());
                 intent.putExtra("publisherId", orderHistory.getPublisherId());
                 intent.putExtra("price", orderHistory.getPostPrice());
+                intent.putExtra("postId", orderHistory.getPostId());
 
                 context.startActivity(intent);
 

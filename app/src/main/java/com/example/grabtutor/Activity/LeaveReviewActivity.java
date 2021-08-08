@@ -45,7 +45,7 @@ public class LeaveReviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_leave_review);
 
         getSupportActionBar().setTitle("Review");
-        postId = getSharedPreferences("PREFS", Context.MODE_PRIVATE).getString("postid", "none");
+        postId = getIntent().getStringExtra("postId");
         btn = findViewById(R.id.reviewSubmit);
         reviewEt = findViewById(R.id.reviewInput);
         userId = getSharedPreferences("PREFS",Context.MODE_PRIVATE).getString("id", "none");

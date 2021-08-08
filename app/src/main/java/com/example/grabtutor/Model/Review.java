@@ -42,7 +42,7 @@ public class Review {
         return timestamp;
     }
 
-    public String getpostId() {
+    public String getPostId() {
         return postId;
     }
 

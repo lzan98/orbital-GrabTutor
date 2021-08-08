@@ -31,7 +31,7 @@ public class ConfirmCompletionActivity extends AppCompatActivity {
 
     DatabaseReference databaseReference;
     RecyclerView recyclerView;
-    String refNumber, publisherId;
+    String refNumber, publisherId, postId;
     int postPrice;
     FirebaseUser firebaseUser;
     OrderHistoryAdapter orderHistoryAdapter;
@@ -49,10 +49,10 @@ public class ConfirmCompletionActivity extends AppCompatActivity {
         refNumber = getIntent().getStringExtra("refNumber");
         publisherId = getIntent().getStringExtra("publisherId");
         postPrice = getIntent().getIntExtra("price", 0);
+        postId = getIntent().getStringExtra("postId");
         back = findViewById(R.id.order_history_back);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("OrderHistory").child(firebaseUser.getUid()).child(refNumber);
-
         ref = findViewById(R.id.order_history_item_ref);
         price = findViewById(R.id.order_history_item_price);
         status = findViewById(R.id.order_history_item_status);
@@ -127,7 +127,7 @@ public class ConfirmCompletionActivity extends AppCompatActivity {
         reviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ConfirmCompletionActivity.this, LeaveReviewActivity.class);
+                Intent intent = new Intent(ConfirmCompletionActivity.this, LeaveReviewActivity.class).putExtra("postId", postId);
                 startActivity(intent);
             }
         });
