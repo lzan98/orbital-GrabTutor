@@ -58,7 +58,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.HolderRevi
         String ratings = review.getRatings();
         String timestamp = review.getTimestamp();
         String reviewText = review.getReview();
-        String postId = review.getpostId();
+        String postId = review.getPostId();
 
         //load info of user who wrote the review
         loadUserDetail(review, holder);
@@ -82,6 +82,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.HolderRevi
                                 intent.putExtra("rating", Float.parseFloat(ratings));
                                 intent.putExtra("reviewText", review.getReview());
                                 intent.putExtra("userId", review.getUserId());
+                                intent.putExtra("postId", review.getPostId());
                                 context.startActivity(intent);
                                 ((Activity)context).finish();
 

@@ -110,10 +110,10 @@ public class ReviewOrderActivity extends AppCompatActivity {
                                                     String uNumber = Long.toString(Calendar.getInstance().getTimeInMillis());
                                                     String refNumber = firebaseUser.getUid() + uNumber;
                                                     OrderHistory orderHistory1 = new OrderHistory(refNumber
-                                                            , postPrice, "In Progress", mPost.getTitle(), "" + firebaseUser.getUid(), mPost.getPublisher(), currentTime, "Buyer");
+                                                            , postPrice, "In Progress", mPost.getTitle(), "" + firebaseUser.getUid(), mPost.getPublisher(), currentTime, "Buyer", postId);
                                                     FirebaseDatabase.getInstance().getReference("OrderHistory").child(firebaseUser.getUid()).child(refNumber).setValue(orderHistory1);
                                                     OrderHistory orderHistory2 = new OrderHistory(refNumber
-                                                            , postPrice, "In Progress", mPost.getTitle(), "" + firebaseUser.getUid(), mPost.getPublisher(), currentTime, "Seller");
+                                                            , postPrice, "In Progress", mPost.getTitle(), "" + firebaseUser.getUid(), mPost.getPublisher(), currentTime, "Seller", postId);
                                                     FirebaseDatabase.getInstance().getReference("OrderHistory").child(mPost.getPublisher()).child(refNumber).setValue(orderHistory2);
                                                     int pointsBalance = snapshot.child("points").getValue(Integer.class);
                                                     FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("points").setValue(pointsBalance + postPrice);

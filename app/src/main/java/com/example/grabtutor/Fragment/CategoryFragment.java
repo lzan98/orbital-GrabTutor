@@ -51,27 +51,27 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.programming:
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProgrammingFragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProgrammingFragment()).addToBackStack(null).commit();
                 break;
 
             case R.id.fitness:
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FitnessFragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FitnessFragment()).addToBackStack(null).commit();
                 break;
 
             case R.id.writing:
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WritingFragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WritingFragment()).addToBackStack(null).commit();
                 break;
 
             case R.id.music:
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MusicFragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MusicFragment()).addToBackStack(null).commit();
                 break;
 
             case R.id.design:
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DesignFragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DesignFragment()).addToBackStack(null).commit();
                 break;
 
             case R.id.dataAnalytics:
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DataAnalyticsFragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DataAnalyticsFragment()).addToBackStack(null).commit();
                 break;
         }
     }
