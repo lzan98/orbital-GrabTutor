@@ -49,10 +49,6 @@ public class LeaveReviewActivity extends AppCompatActivity {
         btn = findViewById(R.id.reviewSubmit);
         reviewEt = findViewById(R.id.reviewInput);
         userId = getSharedPreferences("PREFS",Context.MODE_PRIVATE).getString("id", "none");
-        //if user has written review to this shop, load it
-        loadMyReview();
-        //load post info
-        loadPostInfo();
 
         firebaseAuth = FirebaseAuth.getInstance();
         ratingBar = findViewById(R.id.userRating);
@@ -69,53 +65,6 @@ public class LeaveReviewActivity extends AppCompatActivity {
                 inputData();
                 finish();
                 startActivity(new Intent(LeaveReviewActivity.this, ReviewActivity.class).putExtra("postId", postId));
-            }
-        });
-    }
-
-    private void loadPostInfo() {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
-        ref.child(postId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                String title = "" +snapshot.child("title").getValue();
-                String imageurl = "" +snapshot.child("imageurl").getValue();
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    private void loadMyReview() {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
-        ref.child(postId).child("Ratings").child(userId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    //my review is avail in this shop
-                    //get review details
-
-                    String uid = "" + snapshot.child("id").getValue();
-                    String ratings = "" + snapshot.child("ratings").getValue();
-                    String review = "" + snapshot.child("review").getValue();
-                    String timestamp = "" + snapshot.child("timestamp").getValue();
-
-                    float myRating = Float.parseFloat(ratings);
-                    ratingBar.setRating(myRating);
-                    reviewEt.setText(review);
-
-
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
             }
         });
     }
