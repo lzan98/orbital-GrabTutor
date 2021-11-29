@@ -4,7 +4,7 @@ Project Scope
 Upon registration, a verification link will be sent to the email
 User must verify their email address in order to login
 Option to resend verification link
-
+https://github.com/lzan98/orbital-GrabTutor/blob/master/Screenshots/Screenshot_1627103080.png?raw=true
 
 2) HomePage 
 3) Ability to create and view posts
