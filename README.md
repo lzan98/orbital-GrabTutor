@@ -16,6 +16,7 @@ We hope to create a platform to connect individuals who may be seeking a trainer
 
 ## Frontend User Interface (Client side)
 IDE: Android Studio
+
 Programming Language: Java
 
 ## Backend (Server side)
