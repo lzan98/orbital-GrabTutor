@@ -1,4 +1,29 @@
-Project Scope
+# About Us
+
+We are both undergraduates from the School of Computing, majoring in Computer Science. We have decided to make an android mobile application for CP2106, which focuses on skills sharing between people. Neither of us have any prior experience in application development and have taken the opportunity of taking CP2106 to widen our exposure in this area. The initial level of difficulty chosen for this project is Gemini, but we have upgraded it to Apollo.
+
+Our advisor for this project is Augustine Kau Zhi Cong, and we would like to thank him for his guidance throughout the process on this project.
+
+# Motivation
+
+When individuals are looking to pick up or upgrade a skill set, it may be difficult for them to do so due to the high costs and long duration involved in physical courses, or the lack of interaction and opportunity to clarify doubts  in self-taught online courses. On the other hand, individuals with specialized skills may be looking for ways to earn side income by teaching others their area of expertise, but lack the means to look for interested parties. Therefore, there is a need for a platform to connect people with specialised skills with those who are looking to learn a new skill. The platform will allow trainers to arrange classes with a flexible timetable to fit into a learner’s schedule, and allow them to interact and answer queries at the same time.
+
+# Aim
+
+We hope to create a platform to connect individuals who may be seeking a trainer or skilled specialist to learn a new skill with those who are keen in showcasing and sharing theirs. 
+
+# Tech Stack
+
+## Frontend 
+
+User Interface (Client side)
+IDE: Android Studio
+Programming Language: Java
+
+## Backend (Server side)
+Firebase
+
+# Features
 
 1) Login and Registration UI
 - Upon registration, a verification link will be sent to the email
